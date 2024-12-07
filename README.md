@@ -1,5 +1,7 @@
 # Online Doctor's Portal
 
+Youtube Demo Link : https://www.youtube.com/watch?v=TTyA0PehqnA
+
 A Single page web app with dashboard  where people can pick the date and time and fix an appointment. A doctor can review his appointments and prescribe medicine to a Patient from his dashboard.
 
 #### Features :
@@ -24,6 +26,11 @@ A Single page web app with dashboard  where people can pick the date and time an
 * Express.js
 * MongoDB
 
+### Testing Methodologies
+* Selenium AutomatedUI Testing
+* Jest
+* JMeter Load Testing
+
 # Setup Instructions
 
 ## Check you versions
@@ -38,4 +45,16 @@ npm install -y
 ## Running Application
 ```bash
 npm start
+```
+
+## Running UI Tests
+```bash
+cd frontend
+npm run test:selenium
+```
+
+## Running Load Tests
+```bash
+cd backend/performance-tests/scripts
+./run-tests.sh
 ```
