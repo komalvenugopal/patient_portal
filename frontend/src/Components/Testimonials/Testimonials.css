@@ -1,14 +1,220 @@
-.testimonials .container{
-    background-image: url(../../images/quote.png);
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 150px;
-}
-.testimonials .card{
-    border-color: transparent;
+.testimonials {
+    background-color: #f8f9fa;
+    position: relative;
+    padding: 4rem 0;
+    overflow: hidden;
 }
 
-.testimonials .card .card-footer{
-    background: transparent;
-    border: 0;
+.testimonials::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/images/photos/sjsu-pattern.png');
+    background-size: 200px;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+.testimonials .container {
+    position: relative;
+    z-index: 1;
+}
+
+.testimonials .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.testimonials .section-header::before {
+    content: '\201C'; /* Opening quotation mark */
+    font-size: 8rem;
+    font-family: Georgia, serif;
+    color: var(--sjsu-blue);
+    opacity: 0.2;
+    position: absolute;
+    top: -4rem;
+    right: 0;
+    line-height: 1;
+}
+
+.testimonials .section-header::after {
+    content: '\201D'; /* Closing quotation mark */
+    font-size: 8rem;
+    font-family: Georgia, serif;
+    color: var(--sjsu-blue);
+    opacity: 0.2;
+    position: absolute;
+    bottom: -6rem;
+    left: 0;
+    line-height: 1;
+}
+
+.testimonials .section-subtitle {
+    color: var(--sjsu-gold);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.testimonials .section-title {
+    color: var(--sjsu-blue);
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.testimonials .section-description {
+    color: #444;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.testimonials .card {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 1rem 0.5rem;
+    overflow: hidden;
+}
+
+.testimonials .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.testimonials .card-body {
+    padding: 2rem;
+    position: relative;
+}
+
+.testimonials .card-body::before {
+    content: '\201C';
+    font-size: 4rem;
+    font-family: Georgia, serif;
+    color: var(--sjsu-blue);
+    opacity: 0.2;
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+    line-height: 1;
+}
+
+.testimonials .card-text {
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-style: italic;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonials .card-footer {
+    background-color: var(--sjsu-blue);
+    border: none;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.testimonials .student-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--sjsu-gold);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.testimonials .student-info {
+    margin-left: 1rem;
+}
+
+.testimonials .student-name {
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.testimonials .student-details {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Swiper customization */
+.testimonials .swiper-container {
+    padding: 1rem 0 3rem 0;
+}
+
+.testimonials .swiper-button-next,
+.testimonials .swiper-button-prev {
+    color: var(--sjsu-blue);
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.testimonials .swiper-button-next:after,
+.testimonials .swiper-button-prev:after {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.testimonials .swiper-button-next:hover,
+.testimonials .swiper-button-prev:hover {
+    background-color: var(--sjsu-gold);
+    color: #333;
+}
+
+.testimonials .swiper-pagination-bullet {
+    background-color: var(--sjsu-blue);
+    opacity: 0.5;
+}
+
+.testimonials .swiper-pagination-bullet-active {
+    background-color: var(--sjsu-gold);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .testimonials {
+        padding: 3rem 0;
+    }
+    
+    .testimonials .section-title {
+        font-size: 2rem;
+    }
+    
+    .testimonials .card {
+        margin: 0.5rem;
+    }
+    
+    .testimonials .card-body {
+        padding: 1.5rem;
+    }
+    
+    .testimonials .student-image {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .testimonials .student-name {
+        font-size: 1rem;
+    }
+    
+    .testimonials .student-details {
+        font-size: 0.8rem;
+    }
 }

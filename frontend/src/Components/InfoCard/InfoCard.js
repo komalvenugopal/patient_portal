@@ -1,21 +1,29 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faMapMarkerAlt, faPhoneAlt, } from '@fortawesome/free-solid-svg-icons'
+import { faClock, faMapMarkerAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import './InfoCard.css';
 
 const InfoCard = props => {
-    const {title, icon , description , bg } = props.info; 
+    const {title, icon, description, bg} = props.info; 
+    
+    // Split description into lines if it contains newline characters
+    const descriptionLines = description.split('\n');
    
     return (
-        <div className="col-md-4 text-white mb-2">
-            <div className={`${bg} single-info  py-4  px-5 bg-primary  d-flex align-items-center rounded`}>
-                <FontAwesomeIcon className="icon mr-4" icon={
-                        icon === 'clock' ? faClock :
-                        icon === 'location' ? faMapMarkerAlt :
-                        faPhoneAlt
-                } />
-                <div>
-                    <h6>{title}</h6>
-                    <p className="small m-0">{description}</p>
+        <div className="col-md-4 mb-3">
+            <div className={`info-card ${bg} d-flex align-items-center rounded shadow`}>
+                <div className="icon-container">
+                    <FontAwesomeIcon className="info-icon" icon={
+                            icon === 'clock' ? faClock :
+                            icon === 'location' ? faMapMarkerAlt :
+                            faPhoneAlt
+                    } />
+                </div>
+                <div className="info-content">
+                    <h6 className="info-title">{title}</h6>
+                    {descriptionLines.map((line, index) => (
+                        <p key={index} className="info-description">{line}</p>
+                    ))}
                 </div>
             </div>
         </div>

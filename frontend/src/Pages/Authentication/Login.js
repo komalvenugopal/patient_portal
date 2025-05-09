@@ -3,7 +3,6 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, sen
 import React, { useContext, useState, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { DataContext } from '../../App';
-import LoginImg from '../../images/login.png';
 import './Login.css';
 import LoginForm from './LoginForm';
 import OthersLogin from './OthersLogin';
@@ -278,49 +277,40 @@ const Login = () => {
 
     return (
         <section className="sign-up tg-signup-login">
-            <div className="login-page container ">
-                <div className="row">
-                    <div className="col-md-6 shadow py-3">
-                        <div className="text-center">
-                            <Link to="/" className="nav-link">
-                                <h3 className="style-color mb-2">Online Doctor's Portal</h3>
-                            </Link>
-                            {currentUser.success && (
-                                <div className="alert alert-success" role="alert">
-                                    User {!newUser ? 'logged in' : 'registered'} successfully
-                                </div>
-                            )}
-                            {loggedInUser.error && (
-                                <div className="alert alert-danger" role="alert">
-                                    {loggedInUser.error}
-                                </div>
-                            )}
+            <div className="login-page">
+                <div className="text-center">
+                    <h2 className="login-title">SJSU TeleHealth Portal</h2>
+                    
+                    {currentUser.success && (
+                        <div className="alert alert-success" role="alert">
+                            User {!newUser ? 'logged in' : 'registered'} successfully
                         </div>
-
-                        {newUser ? (
-                            <SignUpForm
-                                toggleUser={handleFormToggle}
-                                validation={handleFormValidation}
-                                submit={handleCreateNewUser}
-                                errors={errors}
-                            />
-                        ) : (
-                            <LoginForm
-                                toggleUser={handleFormToggle}
-                                validation={handleFormValidation}
-                                submit={handleSignIn}
-                                resetPassword={resetPassword}
-                                errors={errors}
-                            />
-                        )}
-
-                        <OthersLogin google={handleGoogleSignIn} facebook={handleFacebookSignIn} />
-                    </div>
-
-                    <div className="col-md-6 d-md-block">
-                        <img className="img-fluid ml-4" src={LoginImg} alt="login-img" />
-                    </div>
+                    )}
+                    {loggedInUser.error && (
+                        <div className="alert alert-danger" role="alert">
+                            {loggedInUser.error}
+                        </div>
+                    )}
                 </div>
+
+                {newUser ? (
+                    <SignUpForm
+                        toggleUser={handleFormToggle}
+                        validation={handleFormValidation}
+                        submit={handleCreateNewUser}
+                        errors={errors}
+                    />
+                ) : (
+                    <LoginForm
+                        toggleUser={handleFormToggle}
+                        validation={handleFormValidation}
+                        submit={handleSignIn}
+                        resetPassword={resetPassword}
+                        errors={errors}
+                    />
+                )}
+
+                <OthersLogin google={handleGoogleSignIn} facebook={handleFacebookSignIn} />
             </div>
         </section>
     );

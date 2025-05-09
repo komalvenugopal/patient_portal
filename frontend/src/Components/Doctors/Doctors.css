@@ -1,65 +1,182 @@
+.doctors {
+	padding: 4rem 0;
+	background-color: #f8f9fa;
+}
+
+.doctors-section-title {
+	color: var(--sjsu-blue);
+	font-weight: 700;
+	font-size: 2.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.doctors-section-subtitle {
+	color: var(--sjsu-gold);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 3rem;
+}
+
 .doctors-view {
-	margin-left: -10px !important;
-	margin-right: -10px !important;
+	margin: 0 auto;
+	padding: 0 15px;
 }
 
 .swiper-wrapper {
-	width: 350px !important;
+	width: 100% !important;
+	padding: 1rem 0;
 }
+
 .single-doctor {
-	border-radius: 10px;
-	box-shadow: 1px 2px 9px -3px rgba(99, 99, 99, 0.45);
-	margin-bottom: 10px;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+	background-color: white;
+	transition: all 0.3s ease;
+	height: 100%;
+	overflow: hidden;
 }
-.doctor-description {
-	padding: 10px 10px 20px 10px;
+
+.single-doctor:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.doctor-image-container {
+	position: relative;
+	overflow: hidden;
+	background-color: var(--sjsu-blue);
+	border-radius: 8px 8px 0 0;
 }
 
 .doctor-image {
-	border-radius: 10px 10px 0px 0px;
+	border-radius: 8px 8px 0 0;
 	width: 100%;
-	height: 100%;
+	height: 200px;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.doctor-description {
+	padding: 1.5rem;
+	position: relative;
+}
+
+.doctor-description::before {
+	content: '';
+	display: block;
+	width: 50px;
+	height: 3px;
+	background-color: var(--sjsu-gold);
+	margin-bottom: 15px;
 }
 
 .doctor-category {
-	color: rgb(21, 209, 200);
-	font-weight: 500;
-	font-size: 14px;
+	color: var(--sjsu-blue);
+	font-weight: 600;
+	font-size: 0.9rem;
 	letter-spacing: 0.01rem;
+	margin-bottom: 0.5rem;
+	display: block;
 }
 
 .doctor-name {
-	color: #3a4256;
+	color: var(--sjsu-dark-blue);
+	font-weight: 700;
+	font-size: 1.25rem;
+	margin-bottom: 0.75rem;
 }
 
 .doctor-education {
-	font-size: 12px;
-	line-height: 1rem;
+	font-size: 0.85rem;
+	line-height: 1.4;
 	letter-spacing: 0.01rem;
+	color: #555;
+	display: block;
+	margin-bottom: 0.75rem;
 }
 
 .collapse-btn {
-	font-size: 13px;
+	font-size: 0.8rem;
 	margin-left: 5px;
-	color: rgb(21, 209, 200);
+	color: var(--sjsu-blue);
 	cursor: pointer;
+	font-weight: 600;
 }
+
 .department {
-	font-size: 15px;
+	font-size: 0.9rem;
+	color: #444;
+	margin-bottom: 0.25rem;
 }
 
 .hospital {
-	font-size: 14px;
+	font-size: 0.85rem;
+	color: #666;
+	font-style: italic;
+	margin-bottom: 1.5rem;
+}
+
+.appointment-button {
+	background-color: var(--sjsu-gold);
+	color: var(--sjsu-dark-blue);
+	border: none;
+	padding: 0.6rem 1.2rem;
+	font-weight: 600;
+	border-radius: 4px;
+	transition: all 0.3s ease;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+	letter-spacing: 0.5px;
+	width: 100%;
+}
+
+.appointment-button:hover {
+	background-color: white;
+	color: var(--sjsu-blue);
+	box-shadow: 0 0 0 2px var(--sjsu-blue);
+}
+
+.appointment-button .icon {
+	margin-right: 8px;
 }
 
 .swiper-button-prev,
 .swiper-button-next {
-	top: 200px !important;
-	color: rgb(21, 209, 200) !important;
+	top: 40% !important;
+	color: var(--sjsu-blue) !important;
+	background-color: rgba(255, 255, 255, 0.8);
+	width: 40px !important;
+	height: 40px !important;
+	border-radius: 50%;
+	transition: all 0.3s ease;
 }
 
-@media (max-width: 700px) {
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+	background-color: white;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+	font-size: 18px !important;
+	font-weight: bold;
+}
+
+@media (max-width: 991px) {
+	.doctors-section-title {
+		font-size: 2rem;
+	}
+	
 	.swiper-slide {
-		width: 60% !important;
+		width: 300px !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.swiper-slide {
+		width: 260px !important;
 	}
 }

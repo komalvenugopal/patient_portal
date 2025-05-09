@@ -1,21 +1,183 @@
-.footer-area{
-    background-image: url(../../images/footer-bg.png);
-    background-size: cover;
+/* SJSU-styled Footer Component */
+@import '../../assets/styles/variables.css';
+
+.footer-area {
+    background-color: var(--sjsu-blue);
+    color: white;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
 
-.footer-area li{
+.footer-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../assets/images/photos/sjsu-pattern.png);
+    background-size: 300px;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+/* Top section with logo and university name */
+.footer-top {
+    padding: 40px 0 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-logo {
+    max-width: 80px;
+    margin-bottom: 15px;
+}
+
+.footer-university-name {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Social media icons */
+.social-media {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 0;
+}
+
+.social-media .list-inline-item {
+    margin: 0 10px;
+}
+
+.social-media .icon {
+    height: 40px;
+    width: 40px;
+    color: var(--sjsu-blue);
+    background-color: var(--sjsu-gold);
+    border-radius: 50%;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.social-media .icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: white;
+}
+
+/* Middle section with columns */
+.footer-middle {
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-col h6 {
+    color: var(--sjsu-gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    position: relative;
     padding-bottom: 10px;
 }
 
-.social-media .icon{
-    height: 40px;
+.footer-col h6::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 40px;
-    color: #1cc7c1;
-    border-radius: 50%;
-    border: 1px solid #6ACECE;
-    padding: 10px;
+    height: 2px;
+    background-color: var(--sjsu-gold);
 }
-.social-media .active-icon{
-    background-color: #6ACECE ;
-    color:white;
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-col li {
+    padding-bottom: 10px;
+}
+
+.footer-col a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.footer-col a:hover {
+    color: var(--sjsu-gold);
+    transform: translateX(5px);
+}
+
+/* Bottom section with copyright and legal links */
+.footer-bottom {
+    padding: 20px 0;
+    font-size: 0.9rem;
+}
+
+.copyright {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.legal-links {
+    text-align: right;
+}
+
+.legal-links a {
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.legal-links a:hover {
+    color: var(--sjsu-gold);
+}
+
+.last-updated {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+/* Admin panel button styling */
+.admin-panel-button {
+    background-color: var(--sjsu-gold);
+    color: var(--sjsu-blue);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.admin-panel-button:hover {
+    background-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-col {
+        margin-bottom: 30px;
+    }
+    
+    .legal-links {
+        text-align: center;
+        margin-top: 15px;
+    }
+    
+    .copyright {
+        text-align: center;
+    }
 }

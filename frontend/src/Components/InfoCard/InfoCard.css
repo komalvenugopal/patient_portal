@@ -1,0 +1,65 @@
+/* InfoCard styles using SJSU branding */
+@import '../../assets/styles/variables.css';
+
+.info-card {
+  padding: 1.5rem;
+  color: white;
+  transition: all 0.3s ease;
+  height: 100%;
+  min-height: 120px;
+}
+
+.info-card.sjsu-blue {
+  background-color: var(--sjsu-blue);
+}
+
+.info-card.sjsu-dark-gray {
+  background-color: var(--sjsu-dark-gray);
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.icon-container {
+  margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.info-icon {
+  font-size: 1.75rem;
+  color: var(--sjsu-gold);
+}
+
+.info-content {
+  flex: 1;
+}
+
+.info-title {
+  font-family: var(--sjsu-primary-font);
+  font-weight: var(--font-bold);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.info-description {
+  font-family: var(--sjsu-primary-font);
+  font-weight: var(--font-regular);
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .info-card {
+    margin-bottom: 1rem;
+  }
+}

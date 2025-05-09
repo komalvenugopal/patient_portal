@@ -1,0 +1,103 @@
+/* Services section styling using SJSU branding */
+
+.services {
+  padding: 4rem 0;
+}
+
+.services .section-header {
+  margin-bottom: 2rem;
+}
+
+.services .section-title {
+  color: var(--sjsu-dark-blue);
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.services .section-subtitle {
+  color: var(--sjsu-blue);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.service-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2.5rem 1.5rem 1.5rem;
+  height: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--sjsu-blue);
+}
+
+.service-icon {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--sjsu-blue);
+  border-radius: 50%;
+  padding: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.service-icon img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.service-card::after {
+  content: '';
+  display: block;
+  height: 4px;
+  width: 60px;
+  background-color: var(--sjsu-gold);
+  margin: 1rem auto;
+}
+
+.service-title {
+  color: var(--sjsu-blue);
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.service-description {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .services {
+    padding: 3rem 0;
+  }
+  
+  .service-card {
+    margin-bottom: 2rem;
+  }
+}

@@ -18,18 +18,21 @@ const Doctor = ({ doctorsData }) => {
 
 	return (
 		<div className="single-doctor">
-
-			{!doctorsData.image ? (
-				<img className="img-fluid doctor-image" src={img} alt="doctor" />
-			) : (
-				<img style={{ height: '200px' }} src={`data:image/png;base64,${doctorsData.image.img}`} alt="doctor" />
-			)}
+			<div className="doctor-image-container">
+				{!doctorsData.image ? (
+					<img className="doctor-image" src={img} alt={name} />
+				) : (
+					<img className="doctor-image" src={`data:image/png;base64,${doctorsData.image.img}`} alt={name} />
+				)}
+			</div>
 			
 			<div className="doctor-description">
-				<p className="doctor-category">{category}</p>
+				<span className="doctor-category">{category || 'SJSU Health Provider'}</span>
 				<h4 className="doctor-name">{name}</h4>
-				<span className="doctor-education">{descriptionCollapse ? education : education.substr(0, 80)}</span>
-				{education.length > 80 ? descriptionCollapse ? (
+				<span className="doctor-education">
+					{descriptionCollapse ? education : education && education.length > 80 ? `${education.substr(0, 80)}...` : education}
+				</span>
+				{education && education.length > 80 ? descriptionCollapse ? (
 					<span onClick={showLess} className="collapse-btn">
 						See Less
 					</span>
@@ -40,13 +43,13 @@ const Doctor = ({ doctorsData }) => {
 				) : (
 					<span> </span>
 				)}
-				<h6 className="mt-4">{designation}</h6>
-				<h6 className="department">{department}</h6>
-				<h6 className="hospital">{hospital}</h6>
+				<h6 className="department">{designation || 'Specialist'}</h6>
+				<h6 className="department">{department || 'SJSU TeleHealth'}</h6>
+				<h6 className="hospital">{hospital || 'SJSU Student Wellness Center'}</h6>
 				<div className="text-center">
 					<Link to="/appointment">
-						<button className="btn btn-primary button-style mt-3">
-							<FontAwesomeIcon icon={faCalendarCheck} className="mr-3" /> Book Appointment
+						<button className="appointment-button">
+							<FontAwesomeIcon icon={faCalendarCheck} className="icon" /> Schedule Appointment
 						</button>
 					</Link>
 				</div>

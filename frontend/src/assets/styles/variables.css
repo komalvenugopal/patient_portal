@@ -1,0 +1,31 @@
+:root {
+  /* Primary Colors */
+  --sjsu-blue: #0055A2;
+  --sjsu-gold: #E5A823;
+  --sjsu-gray: #939597;
+  --sjsu-dark-gray: #53565A;
+  
+  /* Secondary Web Colors */
+  --sjsu-light-gray: #D2D2D2;
+  --sjsu-web-dark-gray: #666666;
+  --sjsu-rollover-blue: #1C8BF4;
+  
+  /* Font Families */
+  --sjsu-primary-font: 'Nunito Sans', sans-serif;
+  --sjsu-secondary-font: Verdana, Geneva, sans-serif;
+  
+  /* Font Weights */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+}

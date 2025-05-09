@@ -1,0 +1,156 @@
+/* SJSU TeleHealth Header Styles */
+@import '../../assets/styles/variables.css';
+
+.sjsu-header {
+  background-color: var(--sjsu-blue);
+  padding: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sjsu-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sjsu-logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.sjsu-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.sjsu-logo {
+  height: 45px;
+  margin-right: 15px;
+}
+
+.sjsu-title {
+  color: white;
+  font-family: var(--sjsu-primary-font);
+  font-weight: var(--font-semibold);
+  font-size: 1.25rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.sjsu-title-divider {
+  margin: 0 10px;
+  font-weight: var(--font-light);
+}
+
+.sjsu-nav {
+  display: flex;
+  align-items: center;
+}
+
+.sjsu-nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sjsu-nav-item {
+  margin: 0 0.75rem;
+}
+
+.sjsu-nav-link {
+  color: white;
+  font-family: var(--sjsu-primary-font);
+  font-weight: var(--font-medium);
+  text-decoration: none;
+  padding: 1rem 1.25rem;
+  display: block;
+  transition: background-color 0.2s ease;
+}
+
+.sjsu-nav-link:hover, .sjsu-nav-link.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--sjsu-gold);
+}
+
+.sjsu-menu-button {
+  display: none;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Search button styles */
+.sjsu-search-container {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.sjsu-search-button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.sjsu-search-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sjsu-search-icon {
+  width: 22px;
+  height: 22px;
+}
+
+/* Mobile styles */
+@media (max-width: 992px) {
+  .sjsu-menu-button {
+    display: block;
+  }
+
+  .sjsu-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--sjsu-blue);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    display: none;
+    z-index: 1000;
+  }
+
+  .sjsu-nav.open {
+    display: flex;
+  }
+
+  .sjsu-nav-list {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sjsu-nav-item {
+    margin: 0;
+    width: 100%;
+  }
+
+  .sjsu-nav-link {
+    padding: 0.75rem 0;
+    width: 100%;
+  }
+}

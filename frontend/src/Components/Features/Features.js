@@ -3,18 +3,23 @@ import { Carousel, CarouselControl, CarouselIndicators, CarouselItem } from 'rea
 import features from '../../Data/features';
 import './Features.css';
 
+// Keep the same images for now as requested by the user
 const items = [
 	{
-		src: 'https://i.imgur.com/wKeBuuY.png'
+		src: 'https://i.imgur.com/wKeBuuY.png',
+		alt: 'SJSU TeleHealth video consultation'
 	},
 	{
-		src: 'https://i.imgur.com/yN1hGTi.png'
+		src: 'https://i.imgur.com/yN1hGTi.png',
+		alt: 'SJSU TeleHealth appointment scheduling'
 	},
 	{
-		src: 'https://i.imgur.com/dmNBC61.png'
+		src: 'https://i.imgur.com/dmNBC61.png',
+		alt: 'SJSU TeleHealth digital prescription'
 	},
 	{
-		src: 'https://i.imgur.com/egLZkQ0.png'
+		src: 'https://i.imgur.com/egLZkQ0.png',
+		alt: 'SJSU TeleHealth mobile app'
 	}
 ];
 
@@ -46,7 +51,7 @@ const Features = () => {
 	const slides = items.map((item) => {
 		return (
 			<CarouselItem onExiting={onExiting} onExited={onExited} key={item.src}>
-				<img src={item.src} alt={item.altText} width="100%" className="img-fluid" />
+				<img src={item.src} alt={item.alt} width="100%" className="img-fluid" />
 			</CarouselItem>
 		);
 	});
@@ -54,14 +59,20 @@ const Features = () => {
 	return (
 		<section id="features">
 			<div className="container">
-				<div className="row">
-					<div className="mt-4">
-						<h4 className="mb-5 mt-5 text-center">
-							Time and distance are no longer a matter of concern. Easily receive advice on physical
-							illness or health issues through video calling.
-						</h4>
+				{/* Section Header */}
+				<div className="row mb-5">
+					<div className="col-12 text-center">
+						<h2 className="features-section-title">How SJSU TeleHealth Works</h2>
+						<p className="features-section-subtitle">
+							Access healthcare from anywhere with our simple three-step process designed specifically for SJSU students.
+						</p>
 					</div>
-					<div className="col-md-6 align-self-center">
+				</div>
+
+				{/* Content Row */}
+				<div className="row">
+					{/* Steps Column */}
+					<div className="col-lg-6 align-self-center mb-5 mb-lg-0">
 						<ul>
 							{features.map((feature) => (
 								<li key={feature.icon}>
@@ -78,23 +89,27 @@ const Features = () => {
 							))}
 						</ul>
 					</div>
-					<div className="col-md-6">
-						<Carousel
-							activeIndex={activeIndex}
-							next={next}
-							previous={previous}
-							keyboard={false}
-							pause={false}
-							ride="carousel"
-							interval="2000"
-							slide={false}
-							className="carousel-fade"
-						>
-							<CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} className="d-none"/>
-							{slides}
-							<CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
-							<CarouselControl direction="next" directionText="Next" onClickHandler={next} />
-						</Carousel>
+
+					{/* Image Column */}
+					<div className="col-lg-6">
+						<div className="features-carousel-container">
+							<Carousel
+								activeIndex={activeIndex}
+								next={next}
+								previous={previous}
+								keyboard={false}
+								pause={false}
+								ride="carousel"
+								interval={3000}
+								slide={false}
+								className="carousel-fade"
+							>
+								<CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+								{slides}
+								<CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+								<CarouselControl direction="next" directionText="Next" onClickHandler={next} />
+							</Carousel>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -1,16 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const FooterCol = (props) => {
 	return (
-		<div className="col-md-3">
-			<h6 className="text-primary">{props.menuTitle ? props.menuTitle : ' '}</h6>
-			<ul className="list-unstyled mt-4">
-				{props.menuItems.map((item) => (
-					<li>
-						<Link to={item.link} className="text-secondary">
-							{item.name}
-						</Link>
+		<div className="col-md-3 footer-col">
+			<h6>{props.menuTitle ? props.menuTitle : ' '}</h6>
+			<ul>
+				{props.menuItems.map((item, index) => (
+					<li key={index}>
+						{item.link.startsWith('http') ? (
+							<a href={item.link} target="_blank" rel="noopener noreferrer">
+								{item.icon && <FontAwesomeIcon icon={item.icon} className="me-2" />}
+								{item.name}
+							</a>
+						) : (
+							<Link to={item.link}>
+								{item.icon && <FontAwesomeIcon icon={item.icon} className="me-2" />}
+								{item.name}
+							</Link>
+						)}
 					</li>
 				))}
 			</ul>

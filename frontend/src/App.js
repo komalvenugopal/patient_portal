@@ -17,8 +17,14 @@ import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
 import Reviews from './Pages/Reviews';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 export const DataContext = createContext();
 export const CalenderContext = createContext();
+
+// Add FontAwesome icons to the library
+library.add(faGoogle, faFacebookF, faArrowLeft);
 
 function App() {
 	const [ loggedInUser, setLoggedInUser ] = useState(() => {
@@ -119,6 +125,9 @@ function App() {
 					<Switch>
 						<Route exact path="/">
 							<Home />
+						</Route>
+						<Route path="/login">
+							<Login />
 						</Route>
 						<Route path="/appointment">
 							<Appointment />

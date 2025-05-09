@@ -1,3 +1,23 @@
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+:root {
+  --sjsu-blue: #0055A2;
+  --sjsu-gold: #E5A823;
+  --sjsu-light-blue: #0077CC;
+  --sjsu-dark-blue: #003366;
+  --sjsu-light-gold: #F7C55A;
+  --sjsu-dark-gold: #C08C1D;
+  --primary: var(--sjsu-blue);
+  --secondary: var(--sjsu-gold);
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,25 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import featuredImg from '../../images/featured.png';
+import './FeaturedService.css';
 
 const FeaturedService = () => {
 	return (
-		<section className="features-service my-5">
-			<div className="container mb-5">
-				<div className="row mb-5">
-					<div className="col-md-7 align-self-center">
-						<h1 className="style-color"> Are You a Specialized Doctor ?</h1>
-						<p className="text-secondary my-5" style={{ fontSize: '20px' }}>
-							Join Our Online Doctors Portal Team and Create your Virtual Chamber. Provide Medical
-							Consultancy via video call and expand the reach of your service. We have a strong network of
-							Bangladeshi registered doctors that you can trust.
-						</p>
-						<Link to="/dashboard">
-							<button className="btn btn-primary button-style mb-5">Sign Up</button>
-						</Link>
-					</div>
-					<div className="col-md-5 mb-4">
-						<img className="img-fluid" src={featuredImg} alt="doctor-need" />
+		<section className="featured-service">
+			<div className="container">
+				<div className="featured-service-content">
+					<div className="row">
+						<div className="col-md-7 align-self-center">
+							<h2 className="featured-service-title">Are You a SJSU Healthcare Professional?</h2>
+							<p className="featured-service-description">
+								Join the <span className="featured-service-highlight">SJSU TeleHealth</span> platform and provide virtual consultations to our campus community. As a healthcare provider, you'll help expand accessible healthcare services to SJSU students, faculty, and staff.
+							</p>
+							<p className="featured-service-description">
+								Our platform connects qualified healthcare professionals with the SJSU community through secure video consultations, making healthcare more accessible for all Spartans.
+							</p>
+							<Link to="/dashboard">
+								<button className="featured-service-button">Join SJSU TeleHealth</button>
+							</Link>
+						</div>
+						<div className="col-md-5">
+							<div className="featured-service-image">
+								<img src={featuredImg} alt="SJSU Healthcare Professional" />
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -1,10 +1,10 @@
 .appointment-banner {
-	background-image: url(../../images/ap-banner-bg.png);
-	background-repeat: no-repeat;
-	background-size: cover;
 	position: relative;
-	height: 420px;
-	background-position: center center;
+	background-color: var(--sjsu-blue);
+	background-size: cover;
+	background-position: center;
+	padding: 3rem 0;
+	overflow: hidden;
 }
 
 .appointment-banner::before {
@@ -13,25 +13,99 @@
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: rgb(36, 41, 73);
-	opacity: .9;
+	background: linear-gradient(135deg, rgba(0, 85, 162, 0.9) 0%, rgba(0, 85, 162, 0.7) 100%);
 	top: 0;
+	left: 0;
+	z-index: 1;
 }
 
-.appointment-banner img {
-	height: 550px;
-	width: 120%;
-	display: block;
-	bottom: 20%;
-	transform: translateY(-130px);
+.appointment-banner .container {
+	position: relative;
+	z-index: 2;
 }
 
-.button-style {
-	padding: 12px 18px;
+.appointment-banner .row {
+	align-items: center;
 }
 
-@media (max-width: 777px) {
-	.appointment-banner {
-		height: auto;
+.appointment-banner-image-container {
+	position: relative;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.appointment-banner-image {
+	max-width: 100%;
+	border-radius: 8px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.appointment-banner-content {
+	padding: 2rem;
+	color: white;
+}
+
+.appointment-banner-subtitle {
+	color: var(--sjsu-gold);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 1rem;
+}
+
+.appointment-banner-title {
+	font-weight: 700;
+	font-size: 2.5rem;
+	margin-bottom: 1.5rem;
+	line-height: 1.2;
+}
+
+.appointment-banner-description {
+	margin-bottom: 2rem;
+	line-height: 1.6;
+	font-size: 1.1rem;
+}
+
+.appointment-banner-button {
+	background-color: var(--sjsu-gold);
+	color: var(--sjsu-dark-blue);
+	border: none;
+	padding: 0.75rem 1.5rem;
+	font-weight: 600;
+	border-radius: 4px;
+	transition: all 0.3s ease;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.9rem;
+}
+
+.appointment-banner-button:hover {
+	background-color: white;
+	color: var(--sjsu-blue);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sjsu-pattern {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url('../../assets/images/photos/sjsu-pattern.png');
+	background-size: 200px;
+	opacity: 0.1;
+	z-index: 0;
+}
+
+@media (max-width: 991px) {
+	.appointment-banner-image-container {
+		margin-bottom: 2rem;
+	}
+
+	.appointment-banner-title {
+		font-size: 2rem;
 	}
 }

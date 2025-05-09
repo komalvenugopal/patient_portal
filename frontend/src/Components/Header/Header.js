@@ -1,81 +1,120 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../../App.css';
-import logo from '../../images/logo.png';
+import React, { useEffect, useState, useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './Header.css';
+import { DataContext } from '../../App';
+import sjsuLogo from '../../assets/images/logos/SJSU University monogram_Web_Blue.png';
 
 const Header = () => {
-	const [ isSticky, setSticky ] = useState(false);
-	const [ isCollapsed, setCollapsed ] = useState(null);
-	const [navStyle, setNavStyle] = useState('text-gray');
-
-	useEffect(() => {
-		window.addEventListener('scroll', () => {
-			if (window.scrollY > 50) {
-				setSticky(true);
-				setNavStyle('');
-			} else {
-				setSticky(false);
-				setNavStyle('text-gray');
-			}
-		});
-	}, []);
+	const { loggedInUser } = useContext(DataContext);
+	const [menuOpen, setMenuOpen] = useState(false);
+	const location = useLocation();
+	
+	// Function to check if a link is active
+	const isActive = (path) => {
+		return location.pathname === path ? 'active' : '';
+	};
+	
+	// Toggle mobile menu
+	const toggleMenu = () => {
+		setMenuOpen(!menuOpen);
+	};
+	
 	return (
-		<nav
-			className={
-				isSticky || isCollapsed ? (
-					'slide in show shadow-sm navbar navbar-expand-sm bg-white navbar-light py-3  fixed-top'
-				) : (
-					'slide out show navbar navbar-expand-sm navbar-light py-4 fixed-top '
-				)
-			}
-		>
-			<div className="container">
-				<Link className="navbar-brand" to="/" style={{ color: '#15D1C8' }}>
-					<img src={logo} alt="logo"/><span className="logo-name"> Online Doctor's Portal </span>
-				</Link>
-				<button
-					onClick={() => setCollapsed(!isCollapsed ? 'show' : null)}
-					className="navbar-toggler d-lg-none"
-					type="button"
-					data-toggle="collapse"
-					data-target="#collapsibleNavId"
-					aria-controls="collapsibleNavId"
-					aria-expanded="false"
+		<header className="sjsu-header fixed-top">
+			<div className="sjsu-header-container">
+				{/* Logo and Title */}
+				<div className="sjsu-logo-container">
+					<Link to="/" className="sjsu-logo-link">
+						<img src={sjsuLogo} alt="SJSU Logo" className="sjsu-logo" />
+						<h1 className="sjsu-title">
+							SJSU <span className="sjsu-title-divider">|</span> TeleHealth
+						</h1>
+					</Link>
+				</div>
+				
+				{/* Mobile Menu Button */}
+				<button 
+					className="sjsu-menu-button" 
+					onClick={toggleMenu}
 					aria-label="Toggle navigation"
 				>
-					<span className="navbar-toggler-icon" />
+					<i className="fas fa-bars"></i>
 				</button>
-				<div className={`collapse navbar-collapse ${isCollapsed}`} id="collapsibleNavId">
-					<ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-						<li className="nav-item active">
-							<Link className="nav-link" to="/">
+				
+				{/* Navigation */}
+				<nav className={`sjsu-nav ${menuOpen ? 'open' : ''}`}>
+					<ul className="sjsu-nav-list">
+						<li className="sjsu-nav-item">
+							<Link 
+								className={`sjsu-nav-link ${isActive('/')}`} 
+								to="/"
+								onClick={() => setMenuOpen(false)}
+							>
 								Home
 							</Link>
 						</li>
-						<li className="nav-item">
-							<Link className="nav-link" to="/appointment">
+						<li className="sjsu-nav-item">
+							<Link 
+								className={`sjsu-nav-link ${isActive('/appointment')}`} 
+								to="/appointment"
+								onClick={() => setMenuOpen(false)}
+							>
 								Make Appointment
 							</Link>
 						</li>
-						<li className="nav-item">
-							<Link className={`nav-link ${navStyle}`} to="/dashboard/dashboard">
+						<li className="sjsu-nav-item">
+							<Link 
+								className={`sjsu-nav-link ${isActive('/dashboard/dashboard')}`} 
+								to="/dashboard/dashboard"
+								onClick={() => setMenuOpen(false)}
+							>
 								Dashboard
 							</Link>
 						</li>
-						<li className="nav-item">
-							<Link className={`nav-link ${navStyle}`}  to="/reviews">
+						<li className="sjsu-nav-item">
+							<Link 
+								className={`sjsu-nav-link ${isActive('/reviews')}`} 
+								to="/reviews"
+								onClick={() => setMenuOpen(false)}
+							>
 								Reviews
 							</Link>
 						</li>
-						<li className="nav-item">
-							<Link className={`nav-link ${navStyle}`}  to="/contact">
+						<li className="sjsu-nav-item">
+							<Link 
+								className={`sjsu-nav-link ${isActive('/contact')}`} 
+								to="/contact"
+								onClick={() => setMenuOpen(false)}
+							>
 								Contact Us
 							</Link>
 						</li>
+						{!loggedInUser || !loggedInUser.email ? (
+							<li className="sjsu-nav-item">
+								<Link 
+									className="sjsu-nav-link sjsu-banner-button" 
+									to="/login"
+									style={{ margin: '0 10px' }}
+									onClick={() => setMenuOpen(false)}
+								>
+									Sign In
+								</Link>
+							</li>
+						) : null}
 					</ul>
-				</div>
+					
+					{/* Search Button */}
+					<div className="sjsu-search-container">
+						<button className="sjsu-search-button" aria-label="Search">
+							<svg className="sjsu-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+								<circle cx="11" cy="11" r="8"></circle>
+								<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+							</svg>
+						</button>
+					</div>
+				</nav>
 			</div>
-		</nav>
+		</header>
 	);
 };
 

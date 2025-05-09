@@ -3,37 +3,78 @@
 }
 
 .sign-up {
-	background-image: url(../../images/biography-bg.png);
+	background-image: url(../../assets/images/photos/sjsu_from_library_top.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: bottom;
+	background-position: center;
 	min-height: 100vh;
 	box-sizing: content-box;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sign-up::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--sjsu-blue);
+	opacity: 0.7;
+	z-index: 1;
+}
+
+.divider-text {
+	position: absolute;
+	top: -10px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: white;
+	padding: 0 15px;
+	color: #666;
+	font-weight: 500;
+	font-size: 0.85rem;
+	letter-spacing: 0.5px;
+}
+
+.login-page {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	max-width: 400px;
 }
 
 .login-page .form-control {
-	border: none;
-	border-radius: 0;
-	border-bottom: 1px solid lightgray;
-	padding-right: 0;
-	padding-left: 0;
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+	padding: 12px 15px;
+	transition: all 0.3s ease;
+	background-color: rgba(255, 255, 255, 0.9);
 }
+
 .login-page .form-control:focus {
-	box-shadow: none !important;
-	border-bottom: 1px solid #1cc7c1;
+	box-shadow: 0 0 0 0.2rem rgba(229, 168, 35, 0.25) !important;
+	border-color: var(--sjsu-gold);
+	background-color: white;
 }
 
 .sign-up form {
 	max-width: 400px;
 	margin: 0 auto;
 }
+
 .sign-up .form-control {
-	background: #f5f5f5;
-	border: none;
-	padding: 25px 15px !important;
+	background: white;
+	border: 1px solid #e1e1e1;
+	padding: 15px !important;
+	border-radius: 5px;
 }
+
 .error {
-	color: red;
+	color: #d9534f;
 }
 
 .sign-up .option label {
@@ -45,11 +86,13 @@
 	padding: 0.4rem 0;
 	font-size: 0.9rem;
 	cursor: pointer;
-	color: var(--primary);
+	color: var(--sjsu-blue);
+	transition: all 0.3s ease;
 }
 
 .forget-text:hover {
-	color: #f4393e;
+	color: var(--sjsu-gold);
+	text-decoration: underline;
 }
 
 .social-text {
@@ -57,13 +100,17 @@
 }
 
 .tg-signup-login {
-	padding: 40px 0;
+	padding: 0;
+	width: 100%;
 }
 
 .tg-signup-login .tg-form {
-	max-width: 570px;
+	max-width: 100%;
 	margin: 0 auto;
-	border-radius: 4px;
+	border-radius: 10px;
+	background-color: white;
+	padding: 30px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .tg-thirdparty-login {
@@ -73,24 +120,31 @@
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 20px;
-	color: #3a4256;
+	color: var(--sjsu-blue);
 	background: #ffffff;
 	border: 1px solid #c7c7c7;
-	border-radius: 57px;
+	border-radius: 5px;
+	transition: all 0.3s ease;
 }
 
 .tg-thirdparty-login .btn {
-	width: 461px;
+	width: 100%;
+	max-width: 400px;
 	margin: 0 auto;
-	height: 51px;
+	height: 45px;
 	text-align: center;
 	padding: 8px;
 	position: relative;
 	display: grid;
 	grid-auto-flow: column;
 	align-items: center;
-	justify-items: baseline;
-	margin-top: 20px;
+	justify-items: center;
+	margin-top: 15px;
+	transition: all 0.3s ease;
+	background-color: white;
+	border: 2px solid var(--sjsu-blue);
+	color: var(--sjsu-blue);
+	font-weight: 600;
 }
 
 .form-divider {
@@ -125,16 +179,16 @@
 
 .tg-form .form-control {
 	font-style: normal;
-	font-weight: 500;
-	font-size: 16px;
+	font-weight: 400;
+	font-size: 14px;
 	line-height: 20px;
-	color: #000;
-	background-color: transparent;
-	border: 0;
-	border-bottom: 1px solid #c5c5c5;
-	border-radius: 0;
-	padding-left: 0;
-	height: 45px;
+	color: #333;
+	background-color: white;
+	border: 1px solid #e1e1e1;
+	border-radius: 4px;
+	padding: 10px 12px;
+	height: 40px;
+	transition: all 0.3s ease;
 }
 
 .tg-form .form-group {
@@ -148,19 +202,29 @@
 
 .tg-form .form-group a,
 .tg-form a {
-	color: var(--primary);
+	color: var(--sjsu-blue);
+	text-decoration: none;
+	transition: all 0.3s ease;
+}
+
+.tg-form .form-group a:hover,
+.tg-form a:hover {
+	color: var(--sjsu-gold);
 	text-decoration: underline;
 }
 
 .tg-form .btn-logintoggle {
-	font-weight: normal;
-	color: var(--primary);
-	text-decoration: underline;
+	font-weight: 500;
+	color: var(--sjsu-blue);
+	text-decoration: none;
 	padding: 0;
+	background: transparent;
+	border: none;
+	transition: all 0.3s ease;
 }
 
 .tg-form .btn-logintoggle:hover {
-	color: var(--primary);
+	color: var(--sjsu-gold);
 	text-decoration: underline;
 }
 
@@ -171,12 +235,12 @@
 
 .tg-form h3 {
 	font-style: normal;
-	font-weight: 500;
+	font-weight: 600;
 	font-size: 20px;
-	line-height: 29px;
-	margin-bottom: 10px;
-	margin-left: 75px;
-	color: #3a4256;
+	line-height: 24px;
+	margin-bottom: 20px;
+	color: var(--sjsu-blue);
+	text-align: center;
 }
 
 .tg-signup-login .alert {
@@ -188,18 +252,107 @@
 
 .error-msg {
 	text-align: left;
-	color: rgb(202, 36, 36);
+	color: #d9534f;
+	font-size: 0.85rem;
+	margin-top: 5px;
 }
 
-@media (max-width: 500px) {
-	.img-fluid {
-		margin-top: 50px !important;
-		margin-left: 0px !important;
+.social-buttons {
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.social-btn {
+	font-size: 14px;
+	font-weight: 500;
+	flex: 1;
+	padding: 8px 0;
+	margin: 0;
+}
+
+.social-btn span {
+	display: inline-block;
+	margin-left: 8px;
+}
+
+.google-btn {
+	background-color: white;
+	border: 1px solid #ddd;
+	color: #333;
+}
+
+.google-btn:hover {
+	background-color: #f8f8f8;
+	border-color: #ccc;
+}
+
+.facebook-btn {
+	background-color: white;
+	border: 1px solid #ddd;
+	color: #333;
+}
+
+.facebook-btn:hover {
+	background-color: #f8f8f8;
+	border-color: #ccc;
+}
+
+.return-link {
+	text-align: center;
+	color: white;
+	margin-top: 20px;
+	font-size: 14px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.return-link:hover {
+	color: var(--sjsu-gold);
+}
+
+.login-title {
+	color: var(--sjsu-gold);
+	font-weight: 700;
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 1.8rem;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+	background-color: #00CCCC !important; /* SJSU teal color */
+	border-color: #00CCCC !important;
+	color: white !important;
+	font-weight: 600 !important;
+	padding: 10px 20px !important;
+	border-radius: 4px !important;
+	transition: all 0.3s ease !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.5px !important;
+	width: 100% !important;
+	font-size: 0.9rem !important;
+}
+
+.btn-primary:hover {
+	background-color: #00B2B2 !important; /* Darker teal on hover */
+	border-color: #00B2B2 !important;
+	color: white !important;
+	transform: translateY(-2px) !important;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+@media (max-width: 576px) {
+	.login-page {
+		width: 90%;
 	}
-}
-
-@media (max-width: 500px) {
+	
+	.tg-form {
+		padding: 30px 20px;
+	}
+	
 	.tg-thirdparty-login .btn {
-		width: 380px;
+		width: 100%;
 	}
 }

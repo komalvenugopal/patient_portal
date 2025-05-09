@@ -1,8 +1,19 @@
-.infos{
+@import '../../assets/styles/variables.css';
+
+.infos {
     position: relative;
     top: -100px;
+    z-index: 10;
 }
 
-.infos .icon{
-    font-size: 3em;
+/* Add some spacing between the info cards on smaller screens */
+@media (max-width: 767px) {
+    .infos {
+        top: -50px;
+    }
+    
+    .infos .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
