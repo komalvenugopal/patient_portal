@@ -48,7 +48,7 @@ const AppointmentDataTable = () => {
                 },
                 body: JSON.stringify({
                     appointmentId: appointment._id,
-                    topic: `${appointment.patientInfo.name}-${appointment.apId}`,
+                    topic: `${appointment.patientInfo?.name || 'Patient'}-${appointment.apId}`,
                     startTime,
                     duration: 60
                 })
@@ -195,7 +195,7 @@ const AppointmentDataTable = () => {
                             <td>{index + 1}</td>
                             <td>{appointment.date}</td>
                             <td>{appointment.time}</td>
-                            <td>{appointment.patientInfo.name}</td>
+                            <td>{appointment.patientInfo?.name || 'N/A'}</td>
                             <td>{appointment.apId}</td>
                             <td>
                                 <span className={`badge ${getStatusBadgeClass(appointment.status)}`}>

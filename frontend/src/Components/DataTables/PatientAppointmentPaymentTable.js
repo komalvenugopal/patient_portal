@@ -14,7 +14,7 @@ const PatientAppointmentPaymentTable = () => {
 
     // Filter only login patients appointments
     const appointmentsOfThePatient = ContextData.allBookedAppointments.filter(
-        (ap) => ap.patientInfo.email === ContextData.loggedInUser.email
+        (ap) => ap.patientInfo && ap.patientInfo.email === ContextData.loggedInUser.email
     );
 
     const openPaymentModal = (apId) => {
@@ -152,16 +152,16 @@ const PatientAppointmentPaymentTable = () => {
                         <p className="text-center mb-2 mt-3">
                             <small>Appointment To</small>
                         </p>
-                        <h5 className="text-success  mb-3">{selectDoctor.name}</h5>
-                        <h6 className="text-secondary mb-1">{selectDoctor.category}</h6>
+                        <h5 className="text-success  mb-3">{selectDoctor?.name || 'Doctor'}</h5>
+                        <h6 className="text-secondary mb-1">{selectDoctor?.category || 'Specialist'}</h6>
                         <p className="my-0">
-                            <small>{selectDoctor.designation}</small>
+                            <small>{selectDoctor?.designation || ''}</small>
                         </p>
                         <p className="my-0">
-                            <small>{selectDoctor.department}</small>
+                            <small>{selectDoctor?.department || ''}</small>
                         </p>
                         <p>
-                            <small>{selectDoctor.hospital}</small>
+                            <small>{selectDoctor?.hospital || 'SJSU Health Center'}</small>
                         </p>
                         <p className="my-2">
                             Fees: <span className="text-success">৳ 700</span>
@@ -215,7 +215,7 @@ const PatientAppointmentPaymentTable = () => {
                             ) : (
                                 <div>
                                     <div className="mb-3 mb-4 text-center">
-                                        <h5 className="text-primary mb-1">{selectAppointment.patientInfo.name}</h5>
+                                        <h5 className="text-primary mb-1">{selectAppointment.patientInfo?.name || 'Patient'}</h5>
                                         <p className="text-secondary mb-0">Date : {selectAppointment.date}</p>
                                         <p className="text-secondary mb-0">Time : {selectAppointment.time}</p>
                                         <p className="text-success">Pay 700 ৳ </p>
