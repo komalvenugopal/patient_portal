@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import logo from '../../assets/images/logos/SJSU University monogram_Web_Blue.png';
 import './Login.css';
 
 const LoginForm = (props) => {
@@ -26,7 +27,10 @@ const LoginForm = (props) => {
 
 	return (
 		<div className="tg-form login">
-			<h3>Sign In</h3>
+			<div className="sjsu-logo-container">
+				<img src={logo} alt="SJSU Logo" className="sjsu-logo" />
+				<h3 className="sjsu-title">SJSU TeleHealth</h3>
+			</div>
 
 			<form onSubmit={submit}>
 				<div className="form-group">
@@ -75,13 +79,13 @@ const LoginForm = (props) => {
 
 			<div className="register-login mt-3">
 				New to SJSU TeleHealth?
-				<button className="btn btn-logintoggle ml-2" onClick={toggleUser}>
+				<button className="toggle-form-btn ml-2" onClick={toggleUser}>
 					Create an account
 				</button>
 			</div>
 
 			<Modal show={show} onHide={handleClose}>
-				<Modal.Header closeButton>
+				<Modal.Header closeButton style={{ backgroundColor: '#0055A2', color: 'white' }}>
 					<Modal.Title>Reset Password</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
@@ -99,17 +103,10 @@ const LoginForm = (props) => {
 					</div>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="outline-secondary" onClick={handleClose}>
-						Cancel
+					<Button variant="secondary" onClick={handleClose} style={{ backgroundColor: '#e74c3c', borderColor: '#e74c3c' }}>
+						Close
 					</Button>
-					<Button 
-						style={{ 
-							backgroundColor: 'var(--sjsu-gold)', 
-							borderColor: 'var(--sjsu-gold)', 
-							color: '#333' 
-						}} 
-						onClick={handleResetPassword}
-					>
+					<Button variant="primary" onClick={handleResetPassword} style={{ backgroundColor: '#0055A2', borderColor: '#0055A2' }}>
 						Send Reset Link
 					</Button>
 				</Modal.Footer>

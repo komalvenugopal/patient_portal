@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../../App';
 import SingleStatistic from './SingleStatistic';
+import './PatientStatistics.css';
 
 const PatientStatistics = () => {
 	const ContextData = useContext(DataContext);
@@ -38,11 +39,11 @@ const PatientStatistics = () => {
 	}, 0);
 
 	return (
-		<div className="row my-5">
-			<SingleStatistic classToAdd="bg-danger" data={{ title: 'Pending Appointments', count: pending }} />
-			<SingleStatistic classToAdd="bg-warning" data={{ title: 'Today’s Appointments', count: todays }} />
-			<SingleStatistic classToAdd="bg-info" data={{ title: 'Total Appointments', count: total }} />
-			<SingleStatistic classToAdd="bg-success" data={{ title: 'Complete Appointments', count: complete }} />
+		<div className="row patient-statistics-container">
+			<SingleStatistic classToAdd="sjsu-bg-primary sjsu-stat-card" data={{ title: 'Pending Appointments', count: pending }} />
+			<SingleStatistic classToAdd="sjsu-bg-warning sjsu-stat-card" data={{ title: "Today's Appointments", count: todays }} />
+			<SingleStatistic classToAdd="sjsu-bg-info sjsu-stat-card" data={{ title: 'Total Appointments', count: total }} />
+			<SingleStatistic classToAdd="sjsu-bg-success sjsu-stat-card" data={{ title: 'Complete Appointments', count: complete }} />
 		</div>
 	);
 };

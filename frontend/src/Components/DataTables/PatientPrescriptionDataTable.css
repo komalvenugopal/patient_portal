@@ -1,0 +1,155 @@
+/* SJSU TeleHealth Patient Prescription Data Table Styling */
+:root {
+  --sjsu-blue: #0055A2;
+  --sjsu-gold: #E5A823;
+  --sjsu-light-blue: #0085CA;
+  --sjsu-light-gray: #f5f5f5;
+  --sjsu-success: #27ae60;
+  --sjsu-danger: #e74c3c;
+}
+
+.sjsu-prescription-table {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-left: 4px solid var(--sjsu-gold);
+  margin-bottom: 2rem;
+}
+
+.sjsu-prescription-table:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sjsu-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.sjsu-table th {
+  color: var(--sjsu-blue);
+  font-weight: 600;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 2px solid var(--sjsu-light-gray);
+}
+
+.sjsu-table td {
+  padding: 0.75rem 0.5rem;
+  vertical-align: middle;
+}
+
+.sjsu-table tr:hover {
+  background-color: var(--sjsu-light-gray);
+}
+
+.sjsu-btn-view {
+  background-color: var(--sjsu-blue);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.sjsu-btn-view:hover {
+  background-color: var(--sjsu-light-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sjsu-btn-disease {
+  background-color: var(--sjsu-success);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.sjsu-btn-disease:hover {
+  background-color: #219653;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sjsu-btn-close {
+  background-color: var(--sjsu-danger);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.sjsu-btn-close:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sjsu-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.sjsu-modal-content {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  border: 2px solid var(--sjsu-gold);
+  padding: 0;
+}
+
+.sjsu-modal-header {
+  background-color: var(--sjsu-blue);
+  color: white;
+  padding: 1rem;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  text-align: center;
+}
+
+.sjsu-modal-body {
+  padding: 1.5rem;
+}
+
+.sjsu-doctor-info {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.sjsu-doctor-name {
+  color: var(--sjsu-blue);
+  margin-bottom: 0.5rem;
+}
+
+.sjsu-doctor-category {
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.sjsu-patient-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--sjsu-light-gray);
+}
+
+.sjsu-prescription-content {
+  max-height: 300px;
+  overflow: auto;
+  padding: 1rem;
+  border: 1px solid var(--sjsu-light-gray);
+  border-radius: 4px;
+}
+
+.sjsu-not-added {
+  color: #6c757d;
+  font-style: italic;
+}

@@ -2,6 +2,7 @@ import { faFileAlt } from '@fortawesome/free-regular-svg-icons';
 import {
 	faCalendar,
 	faGripHorizontal,
+	faHeartbeat,
 	faQuoteLeft, faSignOutAlt,
 	faUser,
 	faUserPlus,
@@ -11,7 +12,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { DataContext } from '../../App';
-import logo from '../../images/logo.png';
+import logo from '../../assets/images/logos/SJSU University monogram_Web_Blue.png';
+import '../../assets/styles/variables.css';
 import './Sidebar.css';
 
 const Sidebar = () => {
@@ -22,13 +24,13 @@ const Sidebar = () => {
 	return (
 		<div
 			className="sidebar d-flex flex-column justify-content-between col-md-2 py-5 px-4"
-			style={{ minHeight: '100vh' }}
+			style={{ minHeight: '100vh', boxShadow: '2px 0 10px rgba(0, 0, 0, 0.1)' }}
 		>
 			<ul className="list-unstyled">
 				<li>
-					<Link to="/" style={{ color: '#15D1C8' }}>
-						<img src={logo} alt="logo" width="25px" />
-						<span className="text-white navName"> Online Doctor's Portal </span>
+					<Link to="/" style={{ color: 'var(--sjsu-gold, #E5A823)' }}>
+						<img src={logo} alt="SJSU logo" width="40px" />
+						<span className="text-white navName"> SJSU TeleHealth </span>
 					</Link>
 				</li>
 				<li>
@@ -59,6 +61,11 @@ const Sidebar = () => {
 							</Link>
 						</li>
 						<li>
+							<Link to="/dashboard/health-profiles" className="text-white">
+								<FontAwesomeIcon icon={faHeartbeat} /> <span>Health Profiles</span>
+							</Link>
+						</li>
+						<li>
 							<Link to="/dashboard/doctors" className="text-white">
 								<FontAwesomeIcon icon={faUserPlus} /> <span>Add Doctor</span>
 							</Link>
@@ -82,6 +89,11 @@ const Sidebar = () => {
 							</Link>
 						</li>
 						<li>
+							<Link to="/dashboard/health-profiles" className="text-white">
+								<FontAwesomeIcon icon={faHeartbeat} /> <span>Health Profiles</span>
+							</Link>
+						</li>
+						<li>
 							<Link to="/dashboard/reviews" className="text-white">
 								<FontAwesomeIcon icon={faQuoteLeft} /> <span>Add Review</span>
 							</Link>
@@ -91,7 +103,7 @@ const Sidebar = () => {
 				
 			</ul>
 			<div>
-				<Link to="/" className="text-white">
+				<Link to="/" className="text-white logout-btn d-inline-block">
 					<FontAwesomeIcon icon={faSignOutAlt} /> <span onClick={() => setLoggedInUser({})}>Logout</span>
 				</Link>
 			</div>

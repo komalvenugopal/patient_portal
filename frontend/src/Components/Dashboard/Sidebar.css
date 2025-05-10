@@ -1,17 +1,68 @@
 .sidebar {
-	background-image: linear-gradient(40deg, #19d3ae, #0fcfec);
+	background-color: var(--sjsu-blue, #0055A2);
 	position: fixed;
+	border-right: 3px solid var(--sjsu-gold, #E5A823);
+	transition: all 0.3s ease;
+	z-index: 999;
 }
 .sidebar li {
-	margin-bottom: 2em;
+	margin-bottom: 1.5em;
+	transition: transform 0.2s ease;
+	padding: 0.5em 0;
 }
+.sidebar li:hover {
+	transform: translateX(5px);
+	background-color: rgba(229, 168, 35, 0.1); /* SJSU Gold with transparency */
+	border-left: 3px solid var(--sjsu-gold, #E5A823);
+	padding-left: 0.5em;
+}
+
 .sidebar li:hover span {
 	display: inline-block;
-	transform: translate(5px);
+	color: var(--sjsu-gold, #E5A823) !important;
 }
 .sidebar svg {
-	margin-right: 5px;
+	margin-right: 10px;
+	color: var(--sjsu-light-gray, #D2D2D2);
+	transition: color 0.2s ease;
+}
+
+.sidebar li:hover svg {
+	color: var(--sjsu-gold, #E5A823);
 }
 .navName {
-	font-weight: 500;
+	font-weight: var(--font-medium, 500);
+	font-family: var(--sjsu-primary-font, 'Nunito Sans', sans-serif);
+	transition: color 0.2s ease;
+}
+
+/* Logo section styling */
+.sidebar li:first-child {
+	margin-bottom: 2.5em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid rgba(229, 168, 35, 0.3);
+}
+
+/* User name styling */
+.sidebar li:nth-child(2) {
+	margin-bottom: 2em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid rgba(229, 168, 35, 0.3);
+}
+
+/* Logout button styling */
+.sidebar .logout-btn {
+	background-color: rgba(229, 168, 35, 0.2);
+	padding: 0.5em 1em;
+	border-radius: 4px;
+	transition: all 0.3s ease;
+}
+
+.sidebar .logout-btn:hover {
+	background-color: var(--sjsu-gold, #E5A823);
+}
+
+.sidebar .logout-btn:hover span, 
+.sidebar .logout-btn:hover svg {
+	color: var(--sjsu-blue, #0055A2) !important;
 }

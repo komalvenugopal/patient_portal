@@ -1,4 +1,5 @@
 import React from "react";
+import logo from '../../assets/images/logos/SJSU University monogram_Web_Blue.png';
 import './Login.css';
 
 const SignUpForm = (props) => {
@@ -6,7 +7,10 @@ const SignUpForm = (props) => {
 
 	return (
 		<div className="tg-form signup">
-			<h3>Create an Account</h3>
+			<div className="sjsu-logo-container">
+				<img src={logo} alt="SJSU Logo" className="sjsu-logo" />
+				<h3 className="sjsu-title">SJSU TeleHealth</h3>
+			</div>
 
 			<form onSubmit={submit}>
 				<div className="form-group">
@@ -73,7 +77,7 @@ const SignUpForm = (props) => {
 
 			<div className="register-login mt-3">
 				Already have an account?
-				<button className="btn btn-logintoggle ml-2" onClick={toggleUser}>
+				<button className="toggle-form-btn ml-2" onClick={toggleUser}>
 					Sign In
 				</button>
 			</div>

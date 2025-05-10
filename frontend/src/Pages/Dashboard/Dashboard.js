@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
+import '../../assets/styles/variables.css';
+import './Dashboard.css';
 import { DataContext } from '../../App';
 import PatientStatistics from '../../Components/Dashboard/PatientStatistics';
 import Sidebar from '../../Components/Dashboard/Sidebar';
@@ -57,10 +59,10 @@ const Dashboard = () => {
 
 	return (
 		<>
-			<div className="container-fluid row">
+			<div className="container-fluid row dashboard-container">
 				<Sidebar />
-				<div id="responsive-dashboard" className="col-md-10 p-4 pr-5" style={{ position: 'absolute', right: 0, backgroundColor: '#F4FDFB' }}>
-					<h5>Dashboard</h5>
+				<div id="responsive-dashboard" className="col-md-10 p-4 pr-5 dashboard-content" style={{ position: 'absolute', right: 0 }}>
+					<h3 className="dashboard-title">Dashboard</h3>
 					{!patientUser ? (
 						<>
 							<Statistics />
@@ -82,7 +84,7 @@ const Dashboard = () => {
 			<CopilotPopup
 				instructions={coPilotInstruction}
 				labels={{
-					title: "Healthcare Assistant",
+					title: "SJSU Health Assistant",
 					initial: "Need any help?",
 				}}
 			/>

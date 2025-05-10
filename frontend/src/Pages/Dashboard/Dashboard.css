@@ -1,0 +1,63 @@
+/* Dashboard.css - SJSU Branding Styles */
+
+.dashboard-container {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.dashboard-content {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-top: 4px solid var(--sjsu-gold, #E5A823);
+}
+
+.dashboard-title {
+  color: var(--sjsu-blue, #0055A2);
+  font-family: var(--sjsu-primary-font, 'Nunito Sans', sans-serif);
+  font-weight: var(--font-semibold, 600);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--sjsu-light-gray, #D2D2D2);
+}
+
+/* Table styling */
+.table {
+  color: var(--sjsu-dark-gray, #53565A);
+}
+
+.table thead th {
+  background-color: var(--sjsu-blue, #0055A2);
+  color: white;
+  font-weight: var(--font-medium, 500);
+  border: none;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(229, 168, 35, 0.05);
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: var(--sjsu-blue, #0055A2);
+  border-color: var(--sjsu-blue, #0055A2);
+}
+
+.btn-primary:hover {
+  background-color: var(--sjsu-rollover-blue, #1C8BF4);
+  border-color: var(--sjsu-rollover-blue, #1C8BF4);
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-content {
+    margin-top: 60px;
+  }
+}

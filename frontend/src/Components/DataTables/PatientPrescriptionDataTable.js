@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
 import { DataContext } from '../../App';
+import './PatientPrescriptionDataTable.css';
 
 const PatientPrescriptionDataTable = () => {
 	const ContextData = useContext(DataContext);
@@ -35,26 +36,26 @@ const PatientPrescriptionDataTable = () => {
 	let srNo = 1;
 
 	return (
-		<div>
-			<table className="table table-borderless">
+		<div className="sjsu-prescription-table">
+			<table className="sjsu-table">
 				<thead>
 					<tr>
-						<th className="text-secondary text-left" scope="col">
+						<th className="text-left" scope="col">
 							Sr No
 						</th>
-						<th className="text-secondary" scope="col">
+						<th scope="col">
 							Date
 						</th>
-						<th className="text-secondary" scope="col">
+						<th scope="col">
 							Time
 						</th>
-						<th className="text-secondary" scope="col">
+						<th scope="col">
 							Appointment ID
 						</th>
-						<th className="text-secondary" scope="col">
+						<th scope="col">
 							Disease
 						</th>
-						<th className="text-secondary text-center" scope="col">
+						<th className="text-center" scope="col">
 							Prescription
 						</th>
 					</tr>
@@ -69,7 +70,7 @@ const PatientPrescriptionDataTable = () => {
 							<td>
 								<button
 									onClick={() => openDataDiseaseModal(ap._id, ap.apId)}
-									className="btn ml-1 btn-success text-white"
+									className="sjsu-btn-disease"
 								>
 									<FontAwesomeIcon icon={faStethoscope} /> VIEW
 								</button>
@@ -79,13 +80,13 @@ const PatientPrescriptionDataTable = () => {
 								{ap.prescription ? (
 									<button
 										onClick={() => openPrescriptionModal(ap._id, ap.apId)}
-										className="btn ml-1 btn-primary text-white"
+										className="sjsu-btn-view"
 									>
 										<FontAwesomeIcon icon={faNotesMedical} /> View
 									</button>
 								) : (
-									<span>
-										<span>Not Added</span>
+									<span className="sjsu-not-added">
+										Not Added
 									</span>
 								)}
 							</td>
@@ -100,7 +101,7 @@ const PatientPrescriptionDataTable = () => {
 				id="modal-responsive"
 				style={{
 					overlay: {
-						backgroundColor: 'rgba(130,125,125,0.75)'
+						backgroundColor: 'rgba(0, 0, 0, 0.75)'
 					},
 					content: {
 						top: '50%',
@@ -109,18 +110,26 @@ const PatientPrescriptionDataTable = () => {
 						bottom: 'auto',
 						marginRight: '-50%',
 						width: '50%',
-						transform: 'translate(-50%, -50%)'
+						transform: 'translate(-50%, -50%)',
+						borderRadius: '8px',
+						border: '2px solid #E5A823',
+						padding: '0'
 					}
 				}}
 			>
 				{selectAppointment && (
-					<form className="px-5 my-3">
-						<h5 className="text-primary text-center">{selectAppointment.patientInfo?.name || 'Patient'}'s Disease</h5>
-						<p className="text-center mb-2 mt-3">
-							<small>Appointment To</small>
-						</p>
-						<h6 className="text-success text-center mb-2">{selectDoctor?.name || 'Doctor'}</h6>
-						<p className="text-secondary text-center mb-4">{selectDoctor?.category || 'Specialist'}</p>
+					<div>
+						<div className="sjsu-modal-header">
+							<h5>{selectAppointment.patientInfo?.name || 'Patient'}'s Disease</h5>
+						</div>
+						<form className="px-5 my-3 sjsu-modal-body">
+							<div className="sjsu-doctor-info">
+								<p className="mb-2">
+									<small>Appointment To</small>
+								</p>
+								<h6 className="sjsu-doctor-name mb-2">{selectDoctor?.name || 'Doctor'}</h6>
+								<p className="sjsu-doctor-category mb-4">{selectDoctor?.category || 'Specialist'}</p>
+							</div>
 
 						<div className="form-group row">
 							<textarea
@@ -138,15 +147,16 @@ const PatientPrescriptionDataTable = () => {
 								disabled={true}
 							/>
 						</div>
-						<div className="form-group text-right">
-							<button
-								className="btn btn-danger mr-3 text-white"
-								onClick={() => setDiseaseModalIsOpen(false)}
-							>
-								CLOSE
-							</button>
-						</div>
-					</form>
+							<div className="form-group text-right">
+								<button
+									className="sjsu-btn-close"
+									onClick={() => setDiseaseModalIsOpen(false)}
+								>
+									CLOSE
+								</button>
+							</div>
+						</form>
+					</div>
 				)}
 			</Modal>
 
@@ -156,7 +166,7 @@ const PatientPrescriptionDataTable = () => {
 				id="modal-responsive"
 				style={{
 					overlay: {
-						backgroundColor: 'rgba(130,125,125,0.75)'
+						backgroundColor: 'rgba(0, 0, 0, 0.75)'
 					},
 					content: {
 						top: '50%',
@@ -165,15 +175,22 @@ const PatientPrescriptionDataTable = () => {
 						bottom: 'auto',
 						marginRight: '-50%',
 						width: '50%',
-						transform: 'translate(-50%, -50%)'
+						transform: 'translate(-50%, -50%)',
+						borderRadius: '8px',
+						border: '2px solid #E5A823',
+						padding: '0'
 					}
 				}}
 			>
-				<div className="px-5 py-3">
+				<div>
+					<div className="sjsu-modal-header">
+						<h5>Prescription Details</h5>
+					</div>
+					<div className="px-5 py-3 sjsu-modal-body">
 					{selectDoctor && (
-						<div className="mb-4 text-center">
-							<h5 className="text-success">{selectDoctor?.name || 'Doctor'}</h5>
-							<h6 className="text-secondary">{selectDoctor?.category || 'Specialist'}</h6>
+						<div className="sjsu-doctor-info">
+							<h5 className="sjsu-doctor-name">{selectDoctor?.name || 'Doctor'}</h5>
+							<h6 className="sjsu-doctor-category">{selectDoctor?.category || 'Specialist'}</h6>
 							<p className="my-0">
 								<small>{selectDoctor?.designation || ''}</small>
 							</p>
@@ -188,17 +205,17 @@ const PatientPrescriptionDataTable = () => {
 
 					{selectAppointment && (
 						<div>
-							<div className="mb-3 mb-4 d-flex justify-content-between">
-								<span className="text-secondary">
+							<div className="sjsu-patient-info">
+								<span>
 									<strong>{selectAppointment.patientInfo?.name || 'Patient'}</strong>
 								</span>
-								<span>Gender : {selectAppointment.patientInfo?.gender || 'Not specified'}</span>
-								<span>Age : {selectAppointment.patientInfo?.age || 'N/A'}</span>
+								<span>Gender: {selectAppointment.patientInfo?.gender || 'Not specified'}</span>
+								<span>Age: {selectAppointment.patientInfo?.age || 'N/A'}</span>
 							</div>
 
-							<div className="mt-5" style={{ height: '300px', overflow: 'auto' }}>
+							<div className="sjsu-prescription-content">
 								{selectAppointment.prescription && (
-									<table className="table table-borderless">
+									<table className="sjsu-table">
 										{selectAppointment.prescription.length &&
 											selectAppointment.prescription.map((prescript, index) => (
 												<tr>
@@ -212,9 +229,9 @@ const PatientPrescriptionDataTable = () => {
 								)}
 							</div>
 
-							<div className=" d-flex justify-content-end">
+							<div className="d-flex justify-content-end">
 								<button
-									className="btn btn-danger mr-3 text-white"
+									className="sjsu-btn-close"
 									onClick={() => setModalIsOpen(false)}
 								>
 									CLOSE
@@ -222,6 +239,7 @@ const PatientPrescriptionDataTable = () => {
 							</div>
 						</div>
 					)}
+				</div>
 				</div>
 			</Modal>
 		</div>

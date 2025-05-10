@@ -1,0 +1,56 @@
+/* SJSU TeleHealth Patient Statistics Styling */
+:root {
+  --sjsu-blue: #0055A2;
+  --sjsu-gold: #E5A823;
+  --sjsu-light-blue: #0085CA;
+  --sjsu-light-gray: #f5f5f5;
+}
+
+.patient-statistics-container {
+  margin: 1.5rem 0;
+}
+
+/* Custom styling for statistics cards */
+.sjsu-stat-card {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sjsu-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* SJSU specific colors for stat cards */
+.sjsu-bg-primary {
+  background-color: var(--sjsu-blue);
+  border-left: 4px solid var(--sjsu-gold);
+}
+
+.sjsu-bg-warning {
+  background-color: #f39c12;
+  border-left: 4px solid var(--sjsu-gold);
+}
+
+.sjsu-bg-info {
+  background-color: var(--sjsu-light-blue);
+  border-left: 4px solid var(--sjsu-gold);
+}
+
+.sjsu-bg-success {
+  background-color: #27ae60;
+  border-left: 4px solid var(--sjsu-gold);
+}
+
+/* Styling for stat numbers and titles */
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-right: 1rem;
+}
+
+.stat-title {
+  font-size: 1rem;
+  font-weight: 500;
+}

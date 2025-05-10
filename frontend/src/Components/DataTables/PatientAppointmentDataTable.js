@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { CalenderContext, DataContext } from '../../App';
+import './PatientAppointmentDataTable.css';
 
 const PatientAppointmentDataTable = () => {
 	const CalenderData = useContext(CalenderContext);
@@ -14,35 +15,29 @@ const PatientAppointmentDataTable = () => {
 	);
 
 	return (
-		<div
-			className="bg-white rounded shadow-sm p-3"
-			style={{
-				height: '442px',
-				overflow: 'auto'
-			}}
-		>
-			<div className="py-3 d-flex align-items-center justify-content-between">
-				<h6 className="text-primary"> Appointments </h6>
-				<div className="selector">
+		<div className="sjsu-appointment-table">
+			<div className="sjsu-appointment-header">
+				<h6 className="sjsu-appointment-title">Appointments</h6>
+				<div className="sjsu-date-selector">
 					{CalenderData.date.getDate()} {CalenderData.date.toLocaleString('default', { month: 'short' })} ,{' '}
 					{CalenderData.date.getFullYear()}
 				</div>
 			</div>
 			{appointmentsOfThePatient.length === 0 ? (
-				<div className="p-5">
-					<h4 className="lead text-center">No Appointments for this Date</h4>
+				<div className="sjsu-no-appointments">
+					<h4 className="lead">No Appointments for this Date</h4>
 				</div>
 			) : (
-				<table className="table table-borderless">
+				<table className="sjsu-table">
 					<thead>
 						<tr>
-							<th className="text-secondary" scope="col">
+							<th scope="col">
 								Date
 							</th>
-							<th className="text-secondary" scope="col">
+							<th scope="col">
 								Schedule
 							</th>
-							<th className="text-secondary text-center" scope="col">
+							<th className="text-center" scope="col">
 								Meeting Link
 							</th>
 						</tr>
@@ -55,18 +50,18 @@ const PatientAppointmentDataTable = () => {
 								<td>{ap.time}</td>
 								<td className="text-center">
 									{ap.meetLink ? (
-										<button className="btn btn-primary">
+										<button className="sjsu-meet-btn">
 											<a
 												href={ap.meetLink}
 												target="_blank"
 												rel="noopener noreferrer"
-												className="text-white"
+												className="sjsu-meet-link"
 											>
 												Open Meet
 											</a>
 										</button>
 									) : (
-										<p>No Meeting Link Added</p>
+										<p className="sjsu-no-link">No Meeting Link Added</p>
 									)}
 								</td>
 							</tr>

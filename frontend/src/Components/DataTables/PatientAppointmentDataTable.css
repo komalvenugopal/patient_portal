@@ -1,0 +1,103 @@
+/* SJSU TeleHealth Patient Appointment Data Table Styling */
+:root {
+  --sjsu-blue: #0055A2;
+  --sjsu-gold: #E5A823;
+  --sjsu-light-blue: #0085CA;
+  --sjsu-light-gray: #f5f5f5;
+}
+
+.sjsu-appointment-table {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  height: 442px;
+  overflow: auto;
+  border-left: 4px solid var(--sjsu-gold);
+}
+
+.sjsu-appointment-table:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sjsu-appointment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 2px solid var(--sjsu-light-gray);
+  margin-bottom: 1rem;
+}
+
+.sjsu-appointment-title {
+  color: var(--sjsu-blue);
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.sjsu-date-selector {
+  background-color: var(--sjsu-light-gray);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  color: var(--sjsu-blue);
+}
+
+.sjsu-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+
+.sjsu-table th {
+  color: var(--sjsu-blue);
+  font-weight: 600;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 2px solid var(--sjsu-light-gray);
+}
+
+.sjsu-table td {
+  padding: 0.75rem 0.5rem;
+  vertical-align: middle;
+}
+
+.sjsu-table tr:hover {
+  background-color: var(--sjsu-light-gray);
+}
+
+.sjsu-no-appointments {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  color: var(--sjsu-blue);
+}
+
+.sjsu-meet-btn {
+  background-color: var(--sjsu-blue);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.sjsu-meet-btn:hover {
+  background-color: var(--sjsu-light-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sjsu-meet-link {
+  color: white;
+  text-decoration: none;
+}
+
+.sjsu-meet-link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.sjsu-no-link {
+  color: #6c757d;
+  font-style: italic;
+}
