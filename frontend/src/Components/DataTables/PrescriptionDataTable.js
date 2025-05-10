@@ -99,7 +99,7 @@ const PrescriptionDataTable = ({ patientInfo }) => {
                             <td>{srNo++}</td>
                             <td>{ap.date}</td>
                             <td>{ap.time}</td>
-                            <td>{ap.patientInfo.name.substr(0, 16)}</td>
+                            <td>{ap.patientInfo?.name ? ap.patientInfo.name.substr(0, 16) : 'N/A'}</td>
                             <td>{ap.apId}</td>
                             <td>{ap.visitingStatus || 'Not Visited'}</td>
                             <td>
@@ -155,15 +155,15 @@ const PrescriptionDataTable = ({ patientInfo }) => {
                 {selectAppointment && (
                     <form className="px-5 my-3" onSubmit={handleSubmit(onSubmit)}>
                         <h5 className="text-primary text-center">
-                            {selectAppointment.patientInfo.name}'s Disease
+                            {selectAppointment.patientInfo?.name || 'Patient'}'s Disease
                         </h5>
                         <p className="text-center mb-2 mt-3"><small>Appointment To</small></p>
-                        <h6 className="text-success text-center mb-2">{selectDoctor.name}</h6>
-                        <p className="text-secondary text-center mb-4">{selectDoctor.category}</p>
+                        <h6 className="text-success text-center mb-2">{selectDoctor?.name || 'Doctor'}</h6>
+                        <p className="text-secondary text-center mb-4">{selectDoctor?.category || 'Specialist'}</p>
 
                         <div className="form-group row">
                             <textarea
-                                defaultValue={selectAppointment?.disease || selectAppointment?.patientInfo.problem || ''}
+                                defaultValue={selectAppointment?.disease || selectAppointment?.patientInfo?.problem || ''}
                                 {...register('problem', { required: true })}
                                 className="form-control col-12"
                                 rows="3"

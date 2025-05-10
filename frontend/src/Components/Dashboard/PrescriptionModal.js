@@ -16,7 +16,7 @@ const PrescriptionModal = (props) => {
         // Filter appointments based on patient email
         const appointments = patientEmail
             ? ContextData.allBookedAppointments.filter((ap) =>
-                  ap.patientInfo.email.toLowerCase().includes(patientEmail.toLowerCase())
+                  ap.patientInfo && ap.patientInfo.email && ap.patientInfo.email.toLowerCase().includes(patientEmail.toLowerCase())
               )
             : [];
 
@@ -132,9 +132,9 @@ const PrescriptionModal = (props) => {
                 {props.selectAppointment && (
                     <div>
                         <div className="mb-3 mb-4 d-flex justify-content-between">
-                            <span className="text-primary">{props.selectAppointment.patientInfo.name}</span>
-                            <span>Gender: {props.selectAppointment.patientInfo.gender}</span>
-                            <span>Age: {props.selectAppointment.patientInfo.age}</span>
+                            <span className="text-primary">{props.selectAppointment.patientInfo?.name || 'Patient'}</span>
+                            <span>Gender: {props.selectAppointment.patientInfo?.gender || 'Not specified'}</span>
+                            <span>Age: {props.selectAppointment.patientInfo?.age || 'N/A'}</span>
                         </div>
 
                         <form className="row add-prescription" onSubmit={handleSubmit(onSubmit)}>

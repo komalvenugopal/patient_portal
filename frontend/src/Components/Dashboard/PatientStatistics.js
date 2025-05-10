@@ -7,7 +7,7 @@ const PatientStatistics = () => {
 
 		// Filter only login patients appointments
 		const appointmentsOfThePatient = ContextData.allBookedAppointments.filter(
-			(ap) => ap.patientInfo.email === ContextData.loggedInUser.email
+			(ap) => ap.patientInfo && ContextData.loggedInUser && ap.patientInfo.email === ContextData.loggedInUser.email
 		);
 	
 

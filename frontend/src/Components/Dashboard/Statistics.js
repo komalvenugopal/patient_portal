@@ -12,15 +12,18 @@ const Statistics = () => {
 			const map = new Map();
 			if (contextData.allBookedAppointments.length) {
 				for (const ap of contextData.allBookedAppointments) {
+					// Skip appointments without patient info
+					if (!ap.patientInfo || !ap.patientInfo.email) continue;
+					
 					if (!map.has(ap.patientInfo.email)) {
 						map.set(ap.patientInfo.email, true); // set any value to Map
 						uniquePatients.push({
-							name: ap.patientInfo.name,
-							phone: ap.patientInfo.phone,
+							name: ap.patientInfo.name || 'Unknown',
+							phone: ap.patientInfo.phone || 'N/A',
 							email: ap.patientInfo.email,
-							gender: ap.patientInfo.gender,
-							age: ap.patientInfo.age,
-							weight: ap.patientInfo.weight
+							gender: ap.patientInfo.gender || 'Not specified',
+							age: ap.patientInfo.age || 'N/A',
+							weight: ap.patientInfo.weight || 'N/A'
 						});
 					}
 				}

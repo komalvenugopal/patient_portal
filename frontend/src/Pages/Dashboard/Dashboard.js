@@ -16,12 +16,18 @@ const Dashboard = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 
+		// Only fetch if loggedInUser exists and has an email
+		if (!loggedInUser || !loggedInUser.email) {
+			console.log("No logged in user with email, skipping appointment fetch");
+			return;
+		}
+
 		// Fetch all appointments
 		fetch(`${process.env.REACT_APP_BASE_URL}/bookedAppointments`)
 			.then((res) => res.json())
 			.then(async (data) => {
 				// Filter appointments for the logged-in user
-				const filteredAppointments = data.filter(ap => ap.patientInfo.email === loggedInUser.email);
+				const filteredAppointments = data.filter(ap => ap.patientInfo && loggedInUser && ap.patientInfo.email === loggedInUser.email);
 				console.log("Filtered appointments for user:", filteredAppointments);
 
 				// Fetch doctor information for each appointment
@@ -47,7 +53,7 @@ const Dashboard = () => {
 			.catch((error) => console.error('Error fetching appointments:', error));
 	}, [loggedInUser.email]);
 
-	const patientUser = allPatients.find((ap) => ap.email === loggedInUser.email);
+	const patientUser = loggedInUser && loggedInUser.email ? allPatients.find((ap) => ap && ap.email === loggedInUser.email) : null;
 
 	return (
 		<>

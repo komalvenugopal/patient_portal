@@ -29,7 +29,7 @@ const PatientPrescriptionDataTable = () => {
 
 	// Filter only login patients appointments
 	const appointmentsOfThePatient = ContextData.allBookedAppointments.filter(
-		(ap) => ap.patientInfo.email === ContextData.loggedInUser.email
+		(ap) => ap.patientInfo && ContextData.loggedInUser && ap.patientInfo.email === ContextData.loggedInUser.email
 	);
 
 	let srNo = 1;
@@ -115,12 +115,12 @@ const PatientPrescriptionDataTable = () => {
 			>
 				{selectAppointment && (
 					<form className="px-5 my-3">
-						<h5 className="text-primary text-center">{selectAppointment.patientInfo.name}'s Disease</h5>
+						<h5 className="text-primary text-center">{selectAppointment.patientInfo?.name || 'Patient'}'s Disease</h5>
 						<p className="text-center mb-2 mt-3">
 							<small>Appointment To</small>
 						</p>
-						<h6 className="text-success text-center mb-2">{selectDoctor.name}</h6>
-						<p className="text-secondary text-center mb-4">{selectDoctor.category}</p>
+						<h6 className="text-success text-center mb-2">{selectDoctor?.name || 'Doctor'}</h6>
+						<p className="text-secondary text-center mb-4">{selectDoctor?.category || 'Specialist'}</p>
 
 						<div className="form-group row">
 							<textarea
@@ -129,7 +129,7 @@ const PatientPrescriptionDataTable = () => {
 									selectAppointment.disease ? (
 										selectAppointment.disease
 									) : (
-										selectAppointment.patientInfo.problem
+										selectAppointment.patientInfo?.problem || 'No problem specified'
 									)
 								}
 								name="problem"
@@ -172,16 +172,16 @@ const PatientPrescriptionDataTable = () => {
 				<div className="px-5 py-3">
 					{selectDoctor && (
 						<div className="mb-4 text-center">
-							<h5 className="text-success">{selectDoctor.name}</h5>
-							<h6 className="text-secondary">{selectDoctor.category}</h6>
+							<h5 className="text-success">{selectDoctor?.name || 'Doctor'}</h5>
+							<h6 className="text-secondary">{selectDoctor?.category || 'Specialist'}</h6>
 							<p className="my-0">
-								<small>{selectDoctor.designation}</small>
+								<small>{selectDoctor?.designation || ''}</small>
 							</p>
 							<p className="my-0">
-								<small>{selectDoctor.department}</small>
+								<small>{selectDoctor?.department || ''}</small>
 							</p>
 							<p>
-								<small>{selectDoctor.hospital}</small>
+								<small>{selectDoctor?.hospital || 'SJSU Health Center'}</small>
 							</p>
 						</div>
 					)}
@@ -190,10 +190,10 @@ const PatientPrescriptionDataTable = () => {
 						<div>
 							<div className="mb-3 mb-4 d-flex justify-content-between">
 								<span className="text-secondary">
-									<strong>{selectAppointment.patientInfo.name}</strong>
+									<strong>{selectAppointment.patientInfo?.name || 'Patient'}</strong>
 								</span>
-								<span>Gender : {selectAppointment.patientInfo.gender}</span>
-								<span>Age : {selectAppointment.patientInfo.age}</span>
+								<span>Gender : {selectAppointment.patientInfo?.gender || 'Not specified'}</span>
+								<span>Age : {selectAppointment.patientInfo?.age || 'N/A'}</span>
 							</div>
 
 							<div className="mt-5" style={{ height: '300px', overflow: 'auto' }}>
