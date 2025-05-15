@@ -16,6 +16,8 @@ import Prescriptions from './Pages/Dashboard/Prescriptions';
 import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
 import Reviews from './Pages/Reviews';
+import PatientProfilesList from './Components/Dashboard/PatientProfile/PatientProfilesList';
+import PatientProfileView from './Components/Dashboard/PatientProfile/PatientProfileView';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
@@ -164,6 +166,12 @@ function App() {
 						</PrivateRoute>
 						<PrivateRoute path="/dashboard/reviews">
 							<AddReview />
+						</PrivateRoute>
+						<PrivateRoute path="/dashboard/patient-profiles">
+							<PatientProfilesList />
+						</PrivateRoute>
+						<PrivateRoute path="/dashboard/patient-profile/:id">
+							<PatientProfileView />
 						</PrivateRoute>
 						<Route path="*">
 							<NotFound />

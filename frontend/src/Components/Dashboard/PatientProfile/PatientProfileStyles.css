@@ -1,0 +1,399 @@
+/* PatientProfileStyles.css */
+/* Based on SJSU TeleHealth UI styling from the provided image */
+
+:root {
+  --sjsu-blue: #0055a2;
+  --sjsu-banner-blue: #0c4da2;
+  --sjsu-dark-blue: #003c71;
+  --sjsu-gold: #e5a823;
+  --sjsu-light-blue: #75aadb;
+  --sjsu-light-gray: #f2f2f2;
+  --sjsu-dark-gray: #333333;
+  --sjsu-text-light: #ffffff;
+  --sjsu-shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Main Container with full-width banner */
+.patient-profile-container {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+
+/* SJSU Banner Header - Full Width Blue Background */
+.sjsu-banner {
+  position: relative;
+  background-color: var(--sjsu-banner-blue);
+  color: var(--sjsu-text-light);
+  padding: 3rem 0;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.sjsu-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 85, 162, 0.9) 0%, rgba(12, 77, 162, 0.8) 100%);
+  z-index: 1;
+}
+
+.sjsu-banner-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 1.5rem;
+}
+
+.sjsu-banner-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--sjsu-text-light);
+}
+
+.sjsu-banner-subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: var(--sjsu-gold);
+}
+
+.sjsu-banner-description {
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Profile Content Area */
+.profile-content {
+  padding: 0 1.5rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Profile Card */
+.profile-card {
+  position: relative;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px var(--sjsu-shadow);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  background-color: white;
+}
+
+.profile-header {
+  background-color: var(--sjsu-blue);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 4px solid var(--sjsu-gold);
+}
+
+.profile-header h4 {
+  font-weight: 600;
+  margin: 0;
+}
+
+.health-score-badge {
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Patient Profile Section */
+.patient-profile-header {
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* Avatar */
+.avatar-container {
+  margin-bottom: 1.5rem;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background-color: var(--sjsu-blue);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 85, 162, 0.3);
+}
+
+/* Patient Information */
+.patient-name {
+  color: var(--sjsu-dark-blue);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.75rem;
+}
+
+.patient-info {
+  margin-bottom: 1.5rem;
+}
+
+.info-item {
+  margin-bottom: 0.75rem;
+  color: var(--sjsu-dark-gray);
+  display: flex;
+  align-items: center;
+}
+
+.info-label {
+  color: var(--sjsu-dark-blue);
+  font-weight: 600;
+  margin-right: 0.5rem;
+  min-width: 120px;
+}
+
+/* Stats Cards */
+.health-stats {
+  padding: 0.5rem;
+}
+
+.stat-card {
+  background-color: var(--sjsu-light-gray);
+  padding: 1.25rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--sjsu-blue);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.stat-title {
+  color: var(--sjsu-blue);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--sjsu-dark-gray);
+  margin-bottom: 0;
+}
+
+/* BMI Categories */
+.bmi-category {
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.bmi-underweight {
+  background-color: #ffeeba;
+  color: #856404;
+}
+
+.bmi-normal {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.bmi-overweight {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.bmi-obese {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Tabs Styling - Match SJSU Website */
+.profile-tabs-container {
+  margin-top: 0;
+  padding: 0 1.5rem;
+}
+
+.profile-tabs {
+  border-bottom: none;
+  background-color: white;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.profile-tabs .nav-link {
+  color: var(--sjsu-dark-gray);
+  font-weight: 600;
+  border: none;
+  padding: 1rem 1.5rem;
+  margin-right: 0.25rem;
+  border-radius: 0;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.profile-tabs .nav-link:hover {
+  background-color: rgba(0, 85, 162, 0.05);
+  color: var(--sjsu-blue);
+}
+
+.profile-tabs .nav-link.active {
+  color: var(--sjsu-blue);
+  background-color: white;
+  font-weight: 700;
+}
+
+.profile-tabs .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--sjsu-blue);
+}
+
+.profile-tab {
+  padding: 2rem 1.5rem;
+  background-color: white;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Loading Spinner */
+.sjsu-loading-spinner {
+  margin-bottom: 1rem;
+}
+
+.sjsu-loading-spinner .spinner-border {
+  color: var(--sjsu-blue);
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Feature Icons for Visit Summaries */
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--sjsu-light-blue);
+  color: white;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 85, 162, 0.2);
+}
+
+/* Action Buttons */
+.sjsu-action-button {
+  background-color: var(--sjsu-blue);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 85, 162, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+}
+
+.sjsu-action-button:hover {
+  background-color: var(--sjsu-dark-blue);
+  box-shadow: 0 6px 12px rgba(0, 85, 162, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Health Score Colors */
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-info {
+  color: #17a2b8 !important;
+}
+
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .sjsu-banner-title {
+    font-size: 2rem;
+  }
+  
+  .sjsu-banner-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5rem;
+  }
+  
+  .patient-name {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .health-score-badge {
+    margin-top: 0.5rem;
+  }
+  
+  .sjsu-banner {
+    padding: 2rem 0;
+  }
+  
+  .sjsu-banner-title {
+    font-size: 1.75rem;
+  }
+  
+  .sjsu-banner-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .info-label {
+    margin-bottom: 0.25rem;
+  }
+}

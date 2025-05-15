@@ -10,7 +10,7 @@ const InfoCard = props => {
     const descriptionLines = description.split('\n');
    
     return (
-        <div className="col-md-4 mb-3">
+        <div>
             <div className={`info-card ${bg} d-flex align-items-center rounded shadow`}>
                 <div className="icon-container">
                     <FontAwesomeIcon className="info-icon" icon={

@@ -2,18 +2,24 @@
 
 .infos {
     position: relative;
-    top: -100px;
+    top: 0;
     z-index: 10;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+
+/* Ensure info cards have proper spacing */
+.infos .row {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 /* Add some spacing between the info cards on smaller screens */
 @media (max-width: 767px) {
     .infos {
         top: -50px;
-    }
-    
-    .infos .row {
-        margin-left: 0;
-        margin-right: 0;
+        margin-bottom: 0;
     }
 }

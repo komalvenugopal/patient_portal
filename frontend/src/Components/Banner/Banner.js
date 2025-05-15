@@ -6,6 +6,7 @@ import wellnessCenterEntrance from '../../assets/images/photos/sjsu-wellness-cen
 
 const Banner = () => {
 	return (
+		<>
 		<section className="sjsu-banner-section">
 			{/* Background Image with Overlay */}
 			<img src={wellnessCenterWide} alt="SJSU Wellness Center" className="sjsu-banner-bg" />
@@ -31,22 +32,6 @@ const Banner = () => {
 						<Link className="sjsu-banner-button" to="/appointment">
 							Make Appointment
 						</Link>
-						
-						{/* Feature Highlights */}
-						<div className="sjsu-banner-features">
-							<div className="sjsu-banner-feature">
-								<i className="fas fa-video sjsu-banner-feature-icon"></i>
-								Secure Video Calls
-							</div>
-							<div className="sjsu-banner-feature">
-								<i className="fas fa-robot sjsu-banner-feature-icon"></i>
-								AI-Powered
-							</div>
-							<div className="sjsu-banner-feature">
-								<i className="fas fa-file-medical sjsu-banner-feature-icon"></i>
-								E-Prescriptions
-							</div>
-						</div>
 					</div>
 					
 					{/* Banner Image */}
@@ -62,6 +47,31 @@ const Banner = () => {
 				</div>
 			</div>
 		</section>
+
+		{/* Feature Highlights - Now inside the banner section but outside of container */}
+		<div className="feature-highlights-banner">
+			<div className="container">
+				<div className="row">
+					<div className="col-12">
+						<div className="banner-feature-wrapper">
+							<div className="banner-feature">
+								<i className="fas fa-video banner-feature-icon"></i>
+								Secure Video Calls
+							</div>
+							<div className="banner-feature">
+								<i className="fas fa-robot banner-feature-icon"></i>
+								AI-Powered
+							</div>
+							<div className="banner-feature">
+								<i className="fas fa-file-medical banner-feature-icon"></i>
+								E-Prescriptions
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</>
 	);
 };
 

@@ -15,6 +15,8 @@ import {
   copilotRuntimeNodeHttpEndpoint,
 } from '@copilotkit/runtime';
 import OpenAI from 'openai';
+import SyncService from './services/syncService.js';
+import ragService from './services/ragService.js';
 
 dotenv.config();
 
@@ -39,12 +41,16 @@ async function connectDB() {
     const appointmentCollection = db.collection('appointments');
     const meetingsCollection = db.collection('meetings');
     const reviewCollection = db.collection('reviews');
+    const patientProfilesCollection = db.collection('patientProfiles');
+    
+    // Initialize services
+    const syncService = new SyncService(db);
 
     // Routes
     app.get('/', (req, res) => res.send('Welcome to Doctors Portal Backend'));
 
     app.post('/getMeetSummary', async (req, res) => {
-      const { text } = req.body;
+      const { text, appointmentId } = req.body;
     
       if (!text) {
         return res.status(400).json({ error: 'Text is required for summarization' });
@@ -69,6 +75,38 @@ async function connectDB() {
         });
     
         const summary = response.choices[0].message.content;
+        
+        // If appointmentId is provided, update the appointment and patient profile
+        if (appointmentId) {
+          try {
+            // Find the appointment
+            const appointment = await appointmentCollection.findOne({
+              _id: new ObjectId(appointmentId)
+            });
+            
+            if (appointment) {
+              // Update appointment with transcript summary
+              await appointmentCollection.updateOne(
+                { _id: appointment._id },
+                { $set: { 
+                    transcript_summary: summary,
+                    transcript_updated_at: new Date()
+                  } 
+                }
+              );
+              
+              // Sync with patient profile
+              await syncService.syncAppointmentWithProfile(
+                await appointmentCollection.findOne({ _id: appointment._id })
+              );
+              
+              console.log(`Updated appointment ${appointmentId} with transcript summary and synced with patient profile`);
+            }
+          } catch (syncError) {
+            console.error("Error updating patient profile with transcript:", syncError);
+          }
+        }
+        
         res.json({ summary });
       } catch (err) {
         console.error('Error generating meeting summary:', err);
@@ -603,6 +641,332 @@ async function connectDB() {
         res.status(500).json({ 
           success: false, 
           error: "Failed to retrieve appointment transcript" 
+        });
+      }
+    });
+
+    // Get transcript for a specific appointment
+    app.get('/transcript/:appointmentId', async (req, res) => {
+      try {
+        const appointmentId = req.params.appointmentId;
+        
+        if (!ObjectId.isValid(appointmentId)) {
+          return res.status(400).json({ 
+            success: false, 
+            error: 'Invalid appointment ID format' 
+          });
+        }
+        
+        const appointment = await appointmentCollection.findOne({
+          _id: new ObjectId(appointmentId)
+        });
+        
+        if (!appointment) {
+          return res.status(404).json({ 
+            success: false, 
+            error: 'Appointment not found' 
+          });
+        }
+
+        if (!appointment.transcript) {
+          return res.status(404).json({ 
+            success: false, 
+            error: 'No transcript found for this appointment' 
+          });
+        }
+
+        res.json({ 
+          success: true, 
+          transcript: appointment.transcript,
+          updated_at: appointment.transcript_updated_at 
+        });
+      } catch (error) {
+        console.error("Error retrieving appointment transcript:", error);
+        res.status(500).json({ 
+          success: false, 
+          error: "Failed to retrieve appointment transcript" 
+        });
+      }
+    });
+
+    // Patient Profile API Endpoints
+    
+    // Get all patient profiles with pagination
+    app.get('/api/patient-profiles', async (req, res) => {
+      try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+        const skip = (page - 1) * limit;
+        
+        const profiles = await patientProfilesCollection.find({}).skip(skip).limit(limit).toArray();
+        const total = await patientProfilesCollection.countDocuments();
+        
+        res.json({
+          success: true,
+          data: {
+            profiles,
+            pagination: {
+              total,
+              pages: Math.ceil(total / limit),
+              page,
+              limit
+            }
+          }
+        });
+      } catch (error) {
+        console.error('Error fetching patient profiles:', error);
+        res.status(500).json({
+          success: false,
+          message: 'Failed to fetch patient profiles',
+          error: error.message
+        });
+      }
+    });
+    
+    // Get patient profile by ID
+    app.get('/api/patient-profile/:id', async (req, res) => {
+      try {
+        const profileId = req.params.id;
+        
+        if (!ObjectId.isValid(profileId)) {
+          return res.status(400).json({
+            success: false,
+            message: 'Invalid profile ID format'
+          });
+        }
+        
+        const profile = await patientProfilesCollection.findOne({
+          _id: new ObjectId(profileId)
+        });
+        
+        if (!profile) {
+          return res.status(404).json({
+            success: false,
+            message: 'Patient profile not found'
+          });
+        }
+        
+        res.json({
+          success: true,
+          data: profile
+        });
+      } catch (error) {
+        console.error('Error fetching patient profile:', error);
+        res.status(500).json({
+          success: false,
+          message: 'Failed to fetch patient profile',
+          error: error.message
+        });
+      }
+    });
+    
+    // Get patient profile by email
+    app.get('/api/patient-profile-by-email/:email', async (req, res) => {
+      try {
+        const email = req.params.email;
+        
+        if (!email) {
+          return res.status(400).json({
+            success: false,
+            message: 'Email is required'
+          });
+        }
+        
+        const profile = await patientProfilesCollection.findOne({ email });
+        
+        if (!profile) {
+          return res.status(404).json({
+            success: false,
+            message: 'Patient profile not found'
+          });
+        }
+        
+        res.json({
+          success: true,
+          data: profile
+        });
+      } catch (error) {
+        console.error('Error fetching patient profile by email:', error);
+        res.status(500).json({
+          success: false,
+          message: 'Failed to fetch patient profile',
+          error: error.message
+        });
+      }
+    });
+    
+    // Add visit to patient profile
+    app.post('/api/patient-profile/:id/visits', async (req, res) => {
+      try {
+        const profileId = req.params.id;
+        const visitData = req.body;
+        
+        if (!ObjectId.isValid(profileId)) {
+          return res.status(400).json({
+            success: false,
+            message: 'Invalid profile ID format'
+          });
+        }
+        
+        if (!visitData) {
+          return res.status(400).json({
+            success: false,
+            message: 'Visit data is required'
+          });
+        }
+        
+        const profile = await patientProfilesCollection.findOne({
+          _id: new ObjectId(profileId)
+        });
+        
+        if (!profile) {
+          return res.status(404).json({
+            success: false,
+            message: 'Patient profile not found'
+          });
+        }
+        
+        // Add visit to profile
+        profile.visits = profile.visits || [];
+        profile.visits.push(visitData);
+        
+        // Process the visit with RAG service
+        await ragService.processVisit(visitData, profile);
+        
+        // Update profile in database
+        await patientProfilesCollection.updateOne(
+          { _id: new ObjectId(profileId) },
+          { $set: { 
+              visits: profile.visits,
+              vectorData: profile.vectorData 
+            } 
+          }
+        );
+        
+        res.json({
+          success: true,
+          message: 'Visit added to patient profile',
+          data: profile
+        });
+      } catch (error) {
+        console.error('Error adding visit to patient profile:', error);
+        res.status(500).json({
+          success: false,
+          message: 'Failed to add visit to patient profile',
+          error: error.message
+        });
+      }
+    });
+    
+    // Generate health insights for patient profile
+    app.get('/api/patient-profile/:id/insights', async (req, res) => {
+      try {
+        const profileId = req.params.id;
+        
+        if (!ObjectId.isValid(profileId)) {
+          return res.status(400).json({
+            success: false,
+            message: 'Invalid profile ID format'
+          });
+        }
+        
+        const profile = await patientProfilesCollection.findOne({
+          _id: new ObjectId(profileId)
+        });
+        
+        if (!profile) {
+          return res.status(404).json({
+            success: false,
+            message: 'Patient profile not found'
+          });
+        }
+        
+        // Generate insights with RAG service
+        const insights = await ragService.generatePatientInsights(profile);
+        
+        // Update profile with insights
+        await patientProfilesCollection.updateOne(
+          { _id: new ObjectId(profileId) },
+          { $set: { aiGeneratedInsights: insights } }
+        );
+        
+        res.json({
+          success: true,
+          data: insights
+        });
+      } catch (error) {
+        console.error('Error generating health insights:', error);
+        res.status(500).json({
+          success: false,
+          message: 'Failed to generate health insights',
+          error: error.message
+        });
+      }
+    });
+    
+    // Process meeting action items
+    app.post('/api/meeting-action-items', async (req, res) => {
+      try {
+        const { meetingUrl, actionItems } = req.body;
+        
+        if (!meetingUrl) {
+          return res.status(400).json({
+            success: false,
+            message: 'Meeting URL is required'
+          });
+        }
+        
+        // Find appointment with this meeting URL
+        const appointment = await appointmentCollection.findOne({
+          meeting: meetingUrl
+        });
+        
+        if (!appointment) {
+          return res.status(404).json({
+            success: false,
+            message: 'No appointment found with this meeting URL'
+          });
+        }
+        
+        // Update appointment with action items
+        await appointmentCollection.updateOne(
+          { _id: appointment._id },
+          { $set: { actionItems } }
+        );
+        
+        // Sync with patient profile
+        const updatedAppointment = await appointmentCollection.findOne({
+          _id: appointment._id
+        });
+        
+        const result = await syncService.syncAppointmentWithProfile(updatedAppointment);
+        
+        res.json({
+          success: true,
+          message: 'Meeting action items processed successfully',
+          data: result
+        });
+      } catch (error) {
+        console.error('Error processing meeting action items:', error);
+        res.status(500).json({
+          success: false,
+          message: 'Failed to process meeting action items',
+          error: error.message
+        });
+      }
+    });
+    
+    // Sync all appointments with patient profiles
+    app.post('/api/sync-appointments', async (req, res) => {
+      try {
+        const result = await syncService.syncAllAppointments();
+        res.json(result);
+      } catch (error) {
+        console.error('Error syncing appointments:', error);
+        res.status(500).json({
+          success: false,
+          message: 'Failed to sync appointments',
+          error: error.message
         });
       }
     });

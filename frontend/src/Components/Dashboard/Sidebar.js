@@ -61,8 +61,8 @@ const Sidebar = () => {
 							</Link>
 						</li>
 						<li>
-							<Link to="/dashboard/health-profiles" className="text-white">
-								<FontAwesomeIcon icon={faHeartbeat} /> <span>Health Profiles</span>
+							<Link to="/dashboard/patient-profiles" className="text-white">
+								<FontAwesomeIcon icon={faHeartbeat} /> <span>Patient Profiles</span>
 							</Link>
 						</li>
 						<li>
@@ -89,8 +89,8 @@ const Sidebar = () => {
 							</Link>
 						</li>
 						<li>
-							<Link to="/dashboard/health-profiles" className="text-white">
-								<FontAwesomeIcon icon={faHeartbeat} /> <span>Health Profiles</span>
+							<Link to="/dashboard/patient-profiles" className="text-white">
+								<FontAwesomeIcon icon={faHeartbeat} /> <span>Patient Profiles</span>
 							</Link>
 						</li>
 						<li>

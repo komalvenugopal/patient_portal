@@ -7,6 +7,7 @@
     display: flex;
     align-items: center;
     overflow: hidden;
+    padding-top: 80px; /* Add padding to prevent overlap with header */
 }
 
 .sjsu-banner-bg {
@@ -104,6 +105,11 @@
 .sjsu-banner-features {
     display: flex;
     margin-top: 2rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 50;
+    width: 100%;
+    justify-content: flex-start;
 }
 
 .sjsu-banner-feature {
@@ -115,6 +121,36 @@
 .sjsu-banner-feature-icon {
     color: var(--sjsu-gold);
     margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* Feature highlights banner */
+.feature-highlights-banner {
+    background-color: var(--sjsu-blue);
+    padding: 15px 0;
+    position: relative;
+    margin-top: -5px;
+    z-index: 5;
+}
+
+.banner-feature-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.banner-feature {
+    display: flex;
+    align-items: center;
+    color: white;
+    margin: 10px 20px;
+    font-weight: var(--font-medium);
+}
+
+.banner-feature-icon {
+    color: var(--sjsu-gold);
+    margin-right: 10px;
     font-size: 1.2rem;
 }
 
