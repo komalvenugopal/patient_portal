@@ -221,6 +221,17 @@ async function connectDB() {
       }
     });
 
+    // Get all reviews/testimonials
+    app.get('/allReviews', async (req, res) => {
+      try {
+        const reviews = await reviewCollection.find({}).toArray();
+        res.json(reviews);
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+        res.status(500).send('Failed to fetch reviews');
+      }
+    });
+
     // Zoom Integration
     app.post('/start_meeting', async (req, res) => {
       try {
