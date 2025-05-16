@@ -17,7 +17,7 @@ import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
 import Reviews from './Pages/Reviews';
 import PatientProfilesList from './Components/Dashboard/PatientProfile/PatientProfilesList';
-import PatientProfileView from './Components/Dashboard/PatientProfile/PatientProfileView';
+import EnhancedPatientProfileView from './Components/Dashboard/PatientProfile/EnhancedPatientProfileView';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
@@ -171,7 +171,7 @@ function App() {
 							<PatientProfilesList />
 						</PrivateRoute>
 						<PrivateRoute path="/dashboard/patient-profile/:id">
-							<PatientProfileView />
+							<EnhancedPatientProfileView />
 						</PrivateRoute>
 						<Route path="*">
 							<NotFound />

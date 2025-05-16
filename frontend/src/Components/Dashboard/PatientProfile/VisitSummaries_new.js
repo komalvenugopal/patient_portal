@@ -100,24 +100,6 @@ const VisitSummaries = ({ visits }) => {
             return "Headache Consultation";
         }
         
-        // Check for disease name in diagnosis if reason is not available
-        if (!visit.reason && !visit.serviceName && visit.diagnosis) {
-            if (typeof visit.diagnosis === 'string') {
-                return `Visit for ${visit.diagnosis}`;
-            } else if (typeof visit.diagnosis === 'object' && visit.diagnosis !== null && visit.diagnosis.condition) {
-                return `Visit for ${visit.diagnosis.condition}`;
-            }
-        }
-        
-        // Check for chief complaints if no reason or diagnosis
-        if (!visit.reason && !visit.serviceName && visit.chiefComplaints) {
-            if (typeof visit.chiefComplaints === 'string') {
-                return `Visit for ${visit.chiefComplaints}`;
-            } else if (Array.isArray(visit.chiefComplaints) && visit.chiefComplaints.length > 0) {
-                return `Visit for ${visit.chiefComplaints[0]}`;
-            }
-        }
-        
         return visit.reason || visit.serviceName || "Medical Visit";
     };
 
@@ -262,12 +244,9 @@ const VisitSummaries = ({ visits }) => {
                                                         {visit.chiefComplaints && (
                                                             <div className="mb-3">
                                                                 <h6 className="text-primary mb-2">Chief Complaints</h6>
-                                                                <p className="mb-0">
-                                                                    {typeof visit.chiefComplaints === 'string' 
-                                                                        ? visit.chiefComplaints 
-                                                                        : Array.isArray(visit.chiefComplaints) 
-                                                                            ? (visit.chiefComplaints.join(', ') || 'No chief complaints recorded')
-                                                                            : 'No chief complaints recorded'}
+                                                                <p className="mb-0">{typeof visit.chiefComplaints === 'string' ? 
+                                                                    visit.chiefComplaints : 
+                                                                    (visit.chiefComplaints.join(', ') || 'No chief complaints recorded')}
                                                                 </p>
                                                             </div>
                                                         )}
@@ -284,15 +263,7 @@ const VisitSummaries = ({ visits }) => {
                                                         {visit.diagnosis && (
                                                             <div className="mb-3">
                                                                 <h6 className="text-primary mb-2">Diagnosis</h6>
-                                                                <p className="mb-0">
-                                                                    {typeof visit.diagnosis === 'string' 
-                                                                        ? visit.diagnosis 
-                                                                        : typeof visit.diagnosis === 'object' && visit.diagnosis !== null
-                                                                            ? (visit.diagnosis.condition || 
-                                                                               (visit.diagnosis.icd10Code ? `${visit.diagnosis.icd10Code}: ` : '') + 
-                                                                               (visit.diagnosis.notes || 'No detailed diagnosis available'))
-                                                                            : 'No diagnosis available'}
-                                                                </p>
+                                                                <p className="mb-0">{visit.diagnosis}</p>
                                                             </div>
                                                         )}
                                                         
